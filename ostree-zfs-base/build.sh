@@ -16,9 +16,11 @@ err_report() {
 
 trap 'err_report $? $LINENO' ERR
 
-cd $(dirname $0)
+cd $(dirname -- ${BASH_SOURCE[0]})
 
-files/selinux/build.sh
+pushd files/selinux/ &> /dev/null
+make
+popd &> /dev/null
 
 IMGNAME=$(basename $PWD)
 DATESTAMP=$(date +%Y-%m-%d)
