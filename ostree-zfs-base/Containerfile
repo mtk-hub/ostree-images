@@ -1,8 +1,9 @@
 FROM quay.io/fedora/fedora-silverblue:39
 
+RUN rpm -qa kernel --queryformat '%{VERSION}-%{RELEASE}.%{ARCH}' > /kernel_version.txt
+
 # Save initrd args
-RUN export KERNEL_VERSION="$(rpm -qa kernel --queryformat '%{VERSION}-%{RELEASE}.%{ARCH}')" && \
-    lsinitrd "/lib/modules/${KERNEL_VERSION}/initramfs.img"  | grep '^Arguments: ' | sed 's/^Arguments: //' > /initrd_stock_args.txt && \
+RUN lsinitrd "/lib/modules/$(cat /kernel_version.txt)/initramfs.img"  | grep '^Arguments: ' | sed 's/^Arguments: //' > /initrd_stock_args.txt && \
     echo -n "mkinitrd args: " && \
     cat /initrd_stock_args.txt
 
@@ -22,41 +23,9 @@ RUN rpm-ostree install \
 # - https://github.com/coreos/rpm-ostree/issues/1614
 RUN test -f /usr/bin/ld || ln -s /usr/bin/ld.bfd /usr/bin/ld
 
-
-# TODO: Remove the following line once this bug is fixed:
-# - https://github.com/openzfs/zfs/issues/15759
-# - -or- when zfs-2.2.3 is released
-RUN rm -v /root && mkdir -p /root && \
-    rpm -e kernel \
-           kernel-core \
-           virtualbox-guest-additions \
-           kernel-devel \
-           kernel-devel-matched \
-           kernel-modules-core \
-           kernel-modules \
-           kernel-modules-extra && \
-    rm -vrf /lib/modules/* && \
-    rpm-ostree install kernel-6.6.14 \
-                       kernel-core-6.6.14 \
-                       kernel-devel-matched-6.6.14 \
-                       kernel-modules-core-6.6.14 \
-                       kernel-modules-6.6.14 \
-                       kernel-modules-extra-6.6.14 \
-                       kernel-devel-6.6.14 && \
-    echo -n "Initrd args before: " && \
-    cat /initrd_stock_args.txt && \
-    sed -i -e 's#6.7.4#6.6.14#' /initrd_stock_args.txt && \
-    echo -n " Initrd args after: " && \
-    cat /initrd_stock_args.txt && \
-    rm -vrf /root && ln -s /var/roothome /root && \
-    rm -vrf /var/* /tmp/*  && \
-    ls -la --color /lib/modules/ && \
-    ostree container commit
-
-
 # Install zfs and tell dkms to install the module
 RUN rpm-ostree install zfs zfs-dracut && \
-    dkms autoinstall -k $(rpm -qa kernel --queryformat '%{VERSION}-%{RELEASE}.%{ARCH}') && \
+    dkms autoinstall -k $(cat /kernel_version.txt) && \
     rm -vrf /var/* /tmp/*  && \
     ostree container commit
 
@@ -96,15 +65,13 @@ RUN mkdir -p /var/tmp && \
     ostree container commit
 
 # Backup stock initrd if it exists
-RUN export KERNEL_VERSION="$(rpm -qa kernel --queryformat '%{VERSION}-%{RELEASE}.%{ARCH}')" && \
-    test -f "/lib/modules/${KERNEL_VERSION}/initramfs.img" && \
-    mv -v "/lib/modules/${KERNEL_VERSION}/initramfs.img" "/lib/modules/${KERNEL_VERSION}/initramfs.stock.img" || \
-    echo "Skipping, /lib/modules/${KERNEL_VERSION}/initramfs.img doesn't exist"
+RUN test -f "/lib/modules/$(cat /kernel_version.txt)/initramfs.img" && \
+    mv -v "/lib/modules/$(cat /kernel_version.txt)/initramfs.img" "/lib/modules/$(cat /kernel_version.txt)/initramfs.stock.img" || \
+    echo "Skipping, /lib/modules/$(cat /kernel_version.txt)/initramfs.img doesn't exist"
 
 # Move the new initrd into place while keeping the stock initrd in the image for reference.
 RUN mkdir -p /var/tmp && \
-    export KERNEL_VERSION="$(rpm -qa kernel --queryformat '%{VERSION}-%{RELEASE}.%{ARCH}')" && \
-    mv -v /boot/initramfs*.img "/lib/modules/${KERNEL_VERSION}/initramfs.img" && \
+    mv -v /boot/initramfs*.img "/lib/modules/$(cat /kernel_version.txt)/initramfs.img" && \
     rm -rf /var/* /tmp/*  && \
     ostree container commit
 
@@ -117,4 +84,4 @@ RUN lsinitrd /lib/modules/*/initramfs.img | grep 10-samsung-usb.rules
 RUN test -h /usr/bin/ld && rm -v /usr/bin/ld || echo "Skipping removing ld hack, doesn't exist or isn't a symlink"
 
 # Remove temporary file containing initrd args
-RUN rm -vf /initrd_stock_args.txt
+RUN rm -vf /initrd_stock_args.txt /kernel_version.txt
