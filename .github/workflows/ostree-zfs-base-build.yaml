@@ -6,14 +6,18 @@ on:
     branches: ["main"]
 
 env:
-  REGISTRY: ghcr.io
-  IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
+#  IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
+#  REGISTRY_USER: ${{ github.actor }}
+#  REGISTRY_PASSWORD: ${{ github.token }}
+  IMAGE_REGISTRY: ghcr.io/mtk-hub
   REGISTRY_USER: ${{ github.actor }}
-  REGISTRY_PASSWORD: ${{ github.token }}
-
+  REGISTRY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
 jobs:
   ostree-zfs-base-build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3

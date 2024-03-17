@@ -25,4 +25,4 @@ popd &> /dev/null
 IMGNAME=$(basename $PWD)
 DATESTAMP=$(date +%Y-%m-%d)
 
-time podman build $@ . -t "${IMGNAME}:${DATESTAMP}" -t "${IMGNAME}:latest" -t "ghcr.io/twiest/${IMGNAME}:latest"
+time podman build $@ . -t "${IMGNAME}:${DATESTAMP}" -t "${IMGNAME}:latest" -t "ghcr.io/mtk-hub/${IMGNAME}:latest"
