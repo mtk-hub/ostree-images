@@ -1,4 +1,4 @@
-name: Build
+name: ostree-zfs-base build and push
 on:
   schedule:
     - cron: "21 21 * * *"
