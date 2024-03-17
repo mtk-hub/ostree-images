@@ -1,0 +1,69 @@
+# ALWAYS use the latest LTS to avoid compatibility issues
+FROM ubuntu:22.04 as builder
+
+RUN cd /tmp && \
+    apt update && \
+    apt install -y alien && \
+    apt download gocryptfs && \
+    alien --to-rpm --scripts --fixperms gocryptfs*.deb
+
+
+FROM ghcr.io/mtk-hub/ostree-zfs-base:latest
+
+COPY --from=builder /tmp/gocryptfs*.rpm /tmp
+
+RUN rpm-ostree install /tmp/gocryptfs*.rpm && \
+    rm /tmp/gocryptfs*.rpm && \
+    # cleanup and verification stage
+    rm -vrf /var && \
+    ostree container commit
+
+# Install rpmfusion repos
+RUN rpm-ostree install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm && \
+    rpm-ostree install https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm && \
+    # cleanup and verification stage
+    rm -vrf /var && \
+    ostree container commit
+
+# Install the basics
+# TODO: evaluate restic as a multi-threaded possible replacement for borg once restic reaches 1.0 status
+#       https://github.com/restic/restic
+RUN rpm-ostree install \
+    distrobox iotop screen snapper strace terminator thunderbird vim gnome-tweak-tool neofetch fuse-encfs borgbackup \
+    keepassxc vlc seahorse htop rclone inxi fio cracklib-dicts hwinfo gst ipmitool pv fuse-sshfs nvme-cli nc \
+    etckeeper sg3_utils lshw podman-docker docker-compose smartmontools gsmartcontrol hdparm zstd pbzip2 lz4 \
+    udisks2-btrfs udisks2-lvm2 udisks2-iscsi easyeffects android-tools wireguard-tools iperf3 && \
+    ln -vsf /usr/bin/ncat /usr/bin/nc && \
+    # cleanup and verification stage
+    rm -vrf /var && \
+    ostree container commit
+
+# Install tailscale
+RUN cd /etc/yum.repos.d/ && curl -LO https://pkgs.tailscale.com/stable/fedora/tailscale.repo && \
+    rpm-ostree install tailscale && \
+    ostree container commit
+
+# Add tcpping for convenience
+ADD files/cli/tcpping /usr/bin/tcpping
+
+RUN echo "Defaults timestamp_timeout=1200" > /etc/sudoers.d/timeout && \
+    chmod 660 /etc/sudoers.d/timeout
+
+# Add config.d
+ADD files/config.d/config.d.timer /etc/systemd/system
+ADD files/config.d/config.d.service /etc/systemd/system
+ADD files/config.d/config.d.sh /usr/bin
+RUN systemctl enable config.d.timer
+
+# Add polkit files
+ADD files/polkitd/50-twiest-rpm-ostree-allow-update-from-all-users.rules /usr/share/polkit-1/rules.d
+
+# Make sure fstrim works on luks devices including root
+ADD files/config.d/00-add-luks-fstrim-kargs.sh /etc/config.d/00-add-luks-fstrim-kargs.sh
+
+# Set vim as default editor
+RUN rm /etc/profile.d/nano-default-editor.sh
+ADD files/profile.d/vim-default-editor.sh /etc/profile.d/vim-default-editor.sh
+
+# Enable git prompt
+ADD files/profile.d/git-prompt.sh /etc/profile.d/git-prompt.sh
