@@ -10,7 +10,7 @@ env:
   REGISTRY_USER: ${{ github.actor }}
   REGISTRY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
 jobs:
-  ostree-zfs-base-build:
+  ostree-zfs-base:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -39,7 +39,7 @@ jobs:
           extra-args: |
             --disable-content-trust
 
-  ostree-base-build:
+  ostree-base:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -61,6 +61,36 @@ jobs:
         uses: redhat-actions/push-to-registry@v2
         with:
           image: ostree-base
+          tags: "latest"
+          registry: ${{ env.IMAGE_REGISTRY }}
+          username: ${{ env.REGISTRY_USER }}
+          password: ${{ env.REGISTRY_PASSWORD }}
+          extra-args: |
+            --disable-content-trust
+
+  ostree-supermicro-x10sri-f:
+    needs: ostree-base
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Build container image
+        uses: redhat-actions/buildah-build@v2
+        with:
+          context: "ostree-supermicro-x10sri-f"
+          containerfiles: "ostree-supermicro-x10sri-f/Containerfile"
+          image: ostree-supermicro-x10sri-f
+          layers: false
+          oci: true
+
+      - name: Push to ghcr.io
+        uses: redhat-actions/push-to-registry@v2
+        with:
+          image: ostree-supermicro-x10sri-f
           tags: "latest"
           registry: ${{ env.IMAGE_REGISTRY }}
           username: ${{ env.REGISTRY_USER }}
