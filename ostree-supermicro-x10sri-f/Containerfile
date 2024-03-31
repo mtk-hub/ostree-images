@@ -1,8 +1,5 @@
 FROM ghcr.io/mtk-hub/ostree-base:latest
 
-RUN mkdir /fun && \
-    ostree container commit
-
 # Install UPS software
 RUN rpm-ostree install nut baobab && \
     # cleanup and verification stage
@@ -17,3 +14,7 @@ RUN mv /usr/bin/cat /usr/bin/cat.orig && \
     mv /usr/bin/cat.orig /usr/bin/cat && \
     rm -vrf /var && \
     ostree container commit
+
+RUN ln -s var/fun /fun && \
+    ostree container commit
+
