@@ -17,7 +17,7 @@ jobs:
       packages: write
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Build container image
         uses: redhat-actions/buildah-build@v2
@@ -46,7 +46,7 @@ jobs:
       packages: write
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Build container image
         uses: redhat-actions/buildah-build@v2
@@ -76,7 +76,7 @@ jobs:
       packages: write
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Build container image
         uses: redhat-actions/buildah-build@v2
