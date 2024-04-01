@@ -1,0 +1,16 @@
+[Unit]
+Description=Setup fun directory
+DefaultDependencies=no
+ConditionPathExists=/etc/initrd-release
+OnFailure=emergency.target
+After=ostree-prepare-root.service
+Requires=sysroot.mount
+Before=initrd-root-fs.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/lib/fundir/mk-fundir.sh
+StandardInput=null
+StandardOutput=journal
+StandardError=journal+console
+RemainAfterExit=yes

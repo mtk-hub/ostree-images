@@ -59,6 +59,10 @@ RUN echo 'add_dracutmodules+=" zfs "' > /etc/dracut.conf.d/zfs.conf && \
 # Create /fun
 RUN echo 'q /fun 0755 - - -' >> /usr/lib/tmpfiles.d/var.conf
 
+ADD files/fundir/mk-fundir.sh    /usr/lib/fundir/mk-fundir.sh
+ADD files/fundir/module-setup.sh /usr/lib/dracut/modules.d/98fundir/module-setup.sh
+ADD files/fundir/fundir.service  /usr/lib/systemd/system/fundir.service
+
 # Run dracut to build a new initrd
 RUN mkdir -p /var/tmp && \
     mkdir -p /tmp/dracut /var/roothome && \
@@ -87,4 +91,4 @@ RUN lsinitrd /lib/modules/*/initramfs.img | grep 10-samsung-usb.rules
 RUN test -h /usr/bin/ld && rm -v /usr/bin/ld || echo "Skipping removing ld hack, doesn't exist or isn't a symlink"
 
 # Remove temporary file containing initrd args
-RUN rm -vf /initrd_stock_args.txt /kernel_version.txt
+#RUN rm -vf /initrd_stock_args.txt /kernel_version.txt
