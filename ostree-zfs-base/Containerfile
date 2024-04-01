@@ -56,6 +56,9 @@ RUN rpm-ostree install lsscsi busybox rng-tools dmraid nvme-cli biosdevname devi
 RUN echo 'add_dracutmodules+=" zfs "' > /etc/dracut.conf.d/zfs.conf && \
     echo 'force_drivers+=" zfs "' >> /etc/dracut.conf.d/zfs.conf
 
+# Create /fun
+RUN echo 'q /fun 0755 - - -' >> /usr/lib/tmpfiles.d/var.conf
+
 # Run dracut to build a new initrd
 RUN mkdir -p /var/tmp && \
     mkdir -p /tmp/dracut /var/roothome && \
