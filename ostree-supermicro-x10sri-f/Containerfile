@@ -14,7 +14,3 @@ RUN mv /usr/bin/cat /usr/bin/cat.orig && \
     mv /usr/bin/cat.orig /usr/bin/cat && \
     rm -vrf /var && \
     ostree container commit
-
-RUN ln -s var/fun /fun && \
-    ostree container commit
-

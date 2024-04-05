@@ -31,9 +31,9 @@ depends() {
 }
 
 install() {
-    dracut_install /usr/lib/fundir/mk-fundir.sh
-    inst_simple "${systemdsystemunitdir}/fundir.service"
+    dracut_install /usr/bin/lsattr /usr/bin/chattr /usr/lib/topdirs/mk-topdirs.sh /usr/bin/xargs
+    inst_simple "${systemdsystemunitdir}/topdirs.service"
     mkdir -p "${initdir}${systemdsystemconfdir}/initrd-root-fs.target.wants"
-    ln_r "${systemdsystemunitdir}/fundir.service" \
-        "${systemdsystemconfdir}/initrd-root-fs.target.wants/fundir.service"
+    ln_r "${systemdsystemunitdir}/topdirs.service" \
+        "${systemdsystemconfdir}/initrd-root-fs.target.wants/topdirs.service"
 }

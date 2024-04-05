@@ -56,12 +56,10 @@ RUN rpm-ostree install lsscsi busybox rng-tools dmraid nvme-cli biosdevname devi
 RUN echo 'add_dracutmodules+=" zfs "' > /etc/dracut.conf.d/zfs.conf && \
     echo 'force_drivers+=" zfs "' >> /etc/dracut.conf.d/zfs.conf
 
-# Create /fun
-RUN echo 'q /fun 0755 - - -' >> /usr/lib/tmpfiles.d/var.conf
-
-ADD files/fundir/mk-fundir.sh    /usr/lib/fundir/mk-fundir.sh
-ADD files/fundir/module-setup.sh /usr/lib/dracut/modules.d/98fundir/module-setup.sh
-ADD files/fundir/fundir.service  /usr/lib/systemd/system/fundir.service
+# Add topdirs so that we customize /sysroot on boot with custom directories
+ADD files/dracut/98topdirs/mk-topdirs.sh   /usr/lib/topdirs/mk-topdirs.sh
+ADD files/dracut/98topdirs/module-setup.sh /usr/lib/dracut/modules.d/98topdirs/module-setup.sh
+ADD files/dracut/98topdirs/topdirs.service /usr/lib/systemd/system/topdirs.service
 
 # Run dracut to build a new initrd
 RUN mkdir -p /var/tmp && \
@@ -89,6 +87,3 @@ RUN lsinitrd /lib/modules/*/initramfs.img | grep 10-samsung-usb.rules
 # - https://github.com/coreos/rpm-ostree/issues/4201
 # - https://github.com/coreos/rpm-ostree/issues/1614
 RUN test -h /usr/bin/ld && rm -v /usr/bin/ld || echo "Skipping removing ld hack, doesn't exist or isn't a symlink"
-
-# Remove temporary file containing initrd args
-#RUN rm -vf /initrd_stock_args.txt /kernel_version.txt
