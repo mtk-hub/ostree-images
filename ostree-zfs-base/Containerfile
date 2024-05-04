@@ -89,7 +89,7 @@ RUN lsinitrd /lib/modules/*/initramfs.img | grep 10-samsung-usb.rules
 RUN test -h /usr/bin/ld && rm -v /usr/bin/ld || echo "Skipping removing ld hack, doesn't exist or isn't a symlink"
 
 # Install sanoid from rpm
-ADD files/sanoid/sanoid-2.2.0-1.fc38.noarch.rpm /root
-RUN rpm-ostree install /root/sanoid-2.2.0-1.fc38.noarch.rpm && \
+ADD files/sanoid/sanoid-2.2.0-1.fc39.noarch.rpm /root
+RUN rpm-ostree install /root/sanoid-2.2.0-1.fc39.noarch.rpm && \
     rm -rf /var/* /tmp/*  && \
     ostree container commit
