@@ -20,6 +20,6 @@ cp /build/${sanoid_version}.tar.gz /root/rpmbuild/SOURCES/${sanoid_version}.tar.
 rpmbuild --target noarch -bb /root/${sanoid_version}/packages/rhel/sanoid.spec
 
 echo
-cp -v /root/rpmbuild/RPMS/noarch/${sanoid_version}-1.fc39.noarch.rpm /build
+cp -v /root/rpmbuild/RPMS/noarch/${sanoid_version}*.rpm /build
 echo
 echo "Completed Successfully!"
