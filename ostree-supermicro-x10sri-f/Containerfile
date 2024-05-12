@@ -24,7 +24,9 @@ RUN rpm-ostree install abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       BackupPC BackupPC-XS biber blosc blosc2 bonnie++   \
       boost-atomic boost-filesystem boost-iostreams   \
       boost-program-options boost-regex bridge-utils   && \
-    rpm-ostree install capstone ccache chkconfig clang15-libs   \
+    rm -vrf /var && \
+    ostree container commit
+RUN rpm-ostree install capstone ccache chkconfig clang15-libs   \
       clang15-resource-filesystem clang16-libs clang16-resource-filesystem clevis   \
       clevis-luks clevis-pin-tpm2 cockpit cockpit-bridge   \
       cockpit-networkmanager cockpit-packagekit cockpit-selinux   \
@@ -32,7 +34,9 @@ RUN rpm-ostree install abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       containernetworking-plugins ctags cyrus-sasl dejavu-sans-mono-fonts diffstat   \
       dos2unix doxygen dracut-config-rescue dracut-network   \
       dracut-squash dyninst ebtables-legacy ed   && \
-    rpm-ostree install edk2-ovmf elfutils   \
+    rm -vrf /var && \
+    ostree container commit
+RUN rpm-ostree install edk2-ovmf elfutils   \
       elfutils-debuginfod-client-devel elfutils-devel esmtp fail2ban-all   \
       fail2ban-firewalld fail2ban-hostsdeny fail2ban-mail   \
       fail2ban-selinux fail2ban-sendmail fail2ban-server   \
@@ -41,21 +45,27 @@ RUN rpm-ostree install abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       glibc-langpack-en gnutls-dane gnutls-utils google-crc32c   \
       gperftools-libs GraphicsMagick GraphicsMagick-c++ grpc grpc-cpp   \
       grpc-data grubby   && \
-    rpm-ostree install gtksourceview4 gtk-vnc2 guile gvnc hdf5 hdf-libs   \
+    rm -vrf /var && \
+    ostree container commit
+RUN rpm-ostree install gtksourceview4 gtk-vnc2 guile gvnc hdf5 hdf-libs   \
       hiredis initscripts initscripts-rename-device inkscape   \
       inkscape-libs intel-gmmlib intel-media-driver iproute-tc   \
       iptables-compat iptables-legacy iptables-legacy-libs   \
       iptables-utils ipxe-roms-qemu irqbalance jigdo jose jupyterlab   \
       jwhois kde-filesystem kexec-tools langpacks-core-en   \
       langpacks-en langpacks-fonts-en ldns lftp lib2geom   && \
-    rpm-ostree install libaec libappstream-glib libarrow   \
+    rm -vrf /var && \
+    ostree container commit
+RUN rpm-ostree install libaec libappstream-glib libarrow   \
       libarrow-acero-libs libarrow-dataset-libs libarrow-doc   \
       libarrow-flight-libs libarrow-glib-libs libatomic_ops libbabeltrace   \
       libblkio libburn libcacard libcdr libconfig libdbi libdnf5   \
       liberation-sans-fonts liberation-serif-fonts libesmtp libestr   \
       libfastjson libfdt libffado libgfapi0 libgfrpc0 libgfxdr0   \
       libiec61883 libipt libiscsi libisoburn libisofs   && \
-    rpm-ostree install libjose liblockfile libluksmeta libmediainfo   \
+    rm -vrf /var && \
+    ostree container commit
+RUN rpm-ostree install libjose liblockfile libluksmeta libmediainfo   \
       libnetapi libnl3-cli liborc1 libphodav libpmemobj libpq   \
       libraw1394 libreport libreport-cli libreport-fedora   \
       libreport-plugin-bugzilla libreport-plugin-kerneloops   \
@@ -64,7 +74,9 @@ RUN rpm-ostree install abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       libteam libtpms libunistring1.0 libva-intel-driver   \
       libvirt-client libvirt-daemon libvirt-daemon-common   \
       libvirt-daemon-config-network libvirt-daemon-driver-interface   && \
-    rpm-ostree install libvirt-daemon-driver-network   \
+    rm -vrf /var && \
+    ostree container commit
+RUN rpm-ostree install libvirt-daemon-driver-network   \
       libvirt-daemon-driver-nodedev libvirt-daemon-driver-nwfilter   \
       libvirt-daemon-driver-qemu libvirt-daemon-driver-secret   \
       libvirt-daemon-driver-storage libvirt-daemon-driver-storage-core   \
@@ -76,7 +88,9 @@ RUN rpm-ostree install abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       libvirt-daemon-log libvirt-daemon-plugin-lockd   \
       libvirt-daemon-proxy libvirt-glib libvirt-libs libvisio libwpd libwpg   \
       libwsman1 libxcrypt-compat libxml++ libzen llhttp llvm   && \
-    rpm-ostree install llvm15-libs llvm16-libs luksmeta mailx mdevctl   \
+    rm -vrf /var && \
+    ostree container commit
+RUN rpm-ostree install llvm15-libs llvm16-libs luksmeta mailx mdevctl   \
       mediainfo nethogs net-tools NetworkManager-l2tp   \
       NetworkManager-libreswan NetworkManager-team NetworkManager-tui newt nmap   \
       nss-tools numad openfec openldap-clients PackageKit   \
@@ -84,7 +98,9 @@ RUN rpm-ostree install abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       patch patchutils perl-Authen-SASL   \
       perl-autovivification perl-B-Hooks-EndOfScope perl-Business-ISBN   \
       perl-Business-ISBN-Data perl-Business-ISMN   && \
-    rpm-ostree install perl-Business-ISSN perl-CGI perl-Class-Accessor   \
+    rm -vrf /var && \
+    ostree container commit
+RUN rpm-ostree install perl-Business-ISSN perl-CGI perl-Class-Accessor   \
       perl-Class-Data-Inheritable perl-Class-Inspector   \
       perl-Class-Method-Modifiers perl-Class-Singleton perl-Class-XSAccessor   \
       perl-Clone perl-Convert-ASN1 perl-Data-Compare   \
@@ -97,7 +113,9 @@ RUN rpm-ostree install abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       perl-Devel-LexAlias perl-Devel-StackTrace perl-Digest-HMAC   \
       perl-Dist-CheckConflicts perl-DynaLoader-Functions   \
       perl-Email-Date-Format   && \
-    rpm-ostree install perl-Error perl-Eval-Closure   \
+    rm -vrf /var && \
+    ostree container commit
+RUN rpm-ostree install perl-Error perl-Eval-Closure   \
       perl-Exception-Class perl-Exporter-Tiny perl-File-Find-Rule   \
       perl-File-Listing perl-File-Next perl-File-ShareDir   \
       perl-File-Slurper perl-GD perl-GD-Barcode perl-Git perl-GSSAPI   \
@@ -107,7 +125,9 @@ RUN rpm-ostree install abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       perl-JSON perl-LDAP perl-Lexical-SealRequireHints   \
       perl-Lexical-Var perl-libwww-perl perl-Lingua-Translit   \
       perl-List-AllUtils perl-List-MoreUtils perl-List-MoreUtils-XS   && \
-    rpm-ostree install perl-List-SomeUtils perl-List-UtilsBy   \
+    rm -vrf /var && \
+    ostree container commit
+RUN rpm-ostree install perl-List-SomeUtils perl-List-UtilsBy   \
       perl-Log-Dispatch perl-Log-Dispatch-FileRotate perl-Log-Log4perl   \
       perl-LWP-MediaTypes perl-LWP-Protocol-https perl-Mail-Sender   \
       perl-Mail-Sendmail perl-MailTools perl-MIME-Lite perl-MIME-Types   \
@@ -118,7 +138,9 @@ RUN rpm-ostree install abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       perl-PadWalker perl-Params-Classify perl-Params-Validate   \
       perl-Params-ValidationCompiler perl-Parse-RecDescent perl-PerlIO-utf8_strict   \
       perl-Ref-Util perl-Ref-Util-XS   && \
-    rpm-ostree install perl-Regexp-Common perl-Role-Tiny perl-Sort-Key   \
+    rm -vrf /var && \
+    ostree container commit
+RUN rpm-ostree install perl-Regexp-Common perl-Role-Tiny perl-Sort-Key   \
       perl-Specio perl-Sub-Exporter-Progressive   \
       perl-Sub-Identify perl-Text-BibTeX perl-Text-CSV perl-Text-Roman   \
       perl-Text-Soundex perltidy perl-Tie-Cycle perl-TimeDate   \
@@ -128,7 +150,9 @@ RUN rpm-ostree install abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       perl-XML-SAX-Base perl-XML-Writer perl-XString podman-plugins   \
       postfix potrace protobuf-compiler psacct   \
       pulseaudio-utils python3-abrt   && \
-    rpm-ostree install python3-abrt-addon python3-aiodns   \
+    rm -vrf /var && \
+    ostree container commit
+RUN rpm-ostree install python3-abrt-addon python3-aiodns   \
       python3-aiohttp python3-aiohttp+speedups python3-aiosignal   \
       python3-antlr4-runtime python3-anyio python3-argcomplete   \
       python3-argon2-cffi python3-argon2-cffi-bindings python3-arrow   \
@@ -138,7 +162,9 @@ RUN rpm-ostree install abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       python3-Bottleneck python3-cachetools python3-cloudpickle   \
       python3-comm python3-constantly python3-cpuinfo   \
       python3-cssselect python3-cython python3-dasbus python3-dask   && \
-    rpm-ostree install python3-dask+array python3-dask+bag   \
+    rm -vrf /var && \
+    ostree container commit
+RUN rpm-ostree install python3-dask+array python3-dask+bag   \
       python3-dask+dataframe python3-dask+delayed python3-decorator   \
       python3-defusedxml python3-entrypoints python3-et_xmlfile   \
       python3-executing python3-fastjsonschema python3-fqdn   \
@@ -150,7 +176,9 @@ RUN rpm-ostree install abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       python3-greenlet python3-grpcio python3-grpcio-status   \
       python3-html5lib python3-hyperlink python3-imageio   \
       python3-importlib-metadata python3-incremental   && \
-    rpm-ostree install python3-inkex python3-inotify python3-ipykernel   \
+    rm -vrf /var && \
+    ostree container commit
+RUN rpm-ostree install python3-inkex python3-inotify python3-ipykernel   \
       python3-ipython python3-ipython_genutils python3-isoduration   \
       python3-jdcal python3-jedi python3-jinja2 python3-joblib   \
       python3-json5 python3-json-logger python3-jsonpointer   \
@@ -161,7 +189,9 @@ RUN rpm-ostree install abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       python3-libreport python3-libvirt python3-libxml2 python3-locket   \
       python3-lz4 python3-markupsafe python3-matplotlib-inline   \
       python3-mistune   && \
-    rpm-ostree install python3-mock python3-mpmath python3-multidict   \
+    rm -vrf /var && \
+    ostree container commit
+RUN rpm-ostree install python3-mock python3-mpmath python3-multidict   \
       python3-munkres python3-nbclassic python3-nbclient   \
       python3-nbconvert python3-nbformat python3-ndindex   \
       python3-nest-asyncio python3-netifaces python3-networkx   \
@@ -172,7 +202,9 @@ RUN rpm-ostree install abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       python3-platformdirs python3-prometheus_client   \
       python3-prompt-toolkit python3-protobuf python3-psycopg2   \
       python3-pure-eval   && \
-    rpm-ostree install python3-pyaes python3-pyarrow   \
+    rm -vrf /var && \
+    ostree container commit
+RUN rpm-ostree install python3-pyaes python3-pyarrow   \
       python3-pyasn1-modules python3-pyasynchat python3-pyasyncore   \
       python3-pycares python3-pydot python3-pyglet python3-pygments   \
       python3-pygraphviz python3-PyMySQL python3-pyOpenSSL   \
@@ -182,7 +214,9 @@ RUN rpm-ostree install abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       python3-rfc3986-validator python3-rpmconf python3-rsa python3-satyr   \
       python3-scikit-image python3-scikit-learn python3-scour   \
       python3-send2trash python3-service-identity python3-snappy   && \
-    rpm-ostree install python3-sniffio python3-soupsieve   \
+    rm -vrf /var && \
+    ostree container commit
+RUN rpm-ostree install python3-sniffio python3-soupsieve   \
       python3-sqlalchemy python3-stack-data python3-statsmodels   \
       python3-sympy python3-tables python3-tabulate   \
       python3-tabulate+widechars python3-terminado python3-threadpoolctl   \
@@ -192,7 +226,9 @@ RUN rpm-ostree install abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       python3-wcwidth python3-webcolors python3-webencodings   \
       python3-xarray python3-xlrd python3-xlsxwriter python3-xlwt   \
       python3-yarl python3-zipp python3-zmq python3-zope-interface   && \
-    rpm-ostree install python3-zstandard python-jupyter-filesystem   \
+    rm -vrf /var && \
+    ostree container commit
+RUN rpm-ostree install python3-zstandard python-jupyter-filesystem   \
       python-qt5-rpm-macros python-setuptools-wheel qemu-audio-alsa   \
       qemu-audio-dbus qemu-audio-jack qemu-audio-oss qemu-audio-pa   \
       qemu-audio-pipewire qemu-audio-sdl qemu-audio-spice   \
@@ -204,7 +240,9 @@ RUN rpm-ostree install abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       qemu-device-display-virtio-gpu-gl qemu-device-display-virtio-gpu-pci   \
       qemu-device-display-virtio-gpu-pci-gl qemu-device-display-virtio-vga   \
       qemu-device-display-virtio-vga-gl   && \
-    rpm-ostree install qemu-device-usb-host qemu-device-usb-redirect   \
+    rm -vrf /var && \
+    ostree container commit
+RUN rpm-ostree install qemu-device-usb-host qemu-device-usb-redirect   \
       qemu-device-usb-smartcard qemu-img qemu-kvm qemu-pr-helper qemu-system-x86   \
       qemu-system-x86-core qemu-ui-curses qemu-ui-egl-headless qemu-ui-gtk   \
       qemu-ui-opengl qemu-ui-sdl qemu-ui-spice-app   \
@@ -212,7 +250,9 @@ RUN rpm-ostree install abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       rpmconf rpmconf-base rrdtool rsync-bpc rsyslog   \
       rsyslog-logrotate runc samba samba-common-tools samba-dcerpc   \
       samba-ldb-ldap-modules samba-libs satyr   && \
-    rpm-ostree install SDL2_image seabios-bin seavgabios-bin   \
+    rm -vrf /var && \
+    ostree container commit
+RUN rpm-ostree install SDL2_image seabios-bin seavgabios-bin   \
       selinux-policy-minimum setroubleshoot-plugins setroubleshoot-server   \
       setserial shorewall shorewall-core sil-mingzat-fonts   \
       source-highlight spice-glib spice-gtk3 spice-server   \
@@ -220,7 +260,9 @@ RUN rpm-ostree install abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       swtpm-selinux swtpm-tools symlinks systemd-container systemtap   \
       systemtap-client systemtap-devel systemtap-runtime tcpdump   \
       tcp_wrappers tcp_wrappers-libs teamd   && \
-    rpm-ostree install teckit telnet texlive-adjustbox texlive-ae   \
+    rm -vrf /var && \
+    ostree container commit
+RUN rpm-ostree install teckit telnet texlive-adjustbox texlive-ae   \
       texlive-algorithms texlive-alphalph texlive-amscls   \
       texlive-amsfonts texlive-amsmath texlive-anysize   \
       texlive-atbegshi texlive-attachfile texlive-attachfile2   \
@@ -230,7 +272,9 @@ RUN rpm-ostree install abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       texlive-biblatex texlive-bibtex texlive-bidi texlive-bigintcalc   \
       texlive-bitset texlive-bookman texlive-bookmark   \
       texlive-booktabs texlive-breakurl   && \
-    rpm-ostree install texlive-breqn texlive-caption texlive-carlisle   \
+    rm -vrf /var && \
+    ostree container commit
+RUN rpm-ostree install texlive-breqn texlive-caption texlive-carlisle   \
       texlive-catchfile texlive-changepage texlive-charter texlive-cite   \
       texlive-cmap texlive-cm-super texlive-collectbox   \
       texlive-collection-basic texlive-collection-latex   \
@@ -240,7 +284,9 @@ RUN rpm-ostree install abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       texlive-dvipdfmx texlive-dvips texlive-ec texlive-enctex   \
       texlive-enumitem texlive-eso-pic texlive-etexcmds   \
       texlive-etex-pkg texlive-etoolbox texlive-euenc   && \
-    rpm-ostree install texlive-euler texlive-eulervm texlive-everysel   \
+    rm -vrf /var && \
+    ostree container commit
+RUN rpm-ostree install texlive-euler texlive-eulervm texlive-everysel   \
       texlive-everyshi texlive-extsizes texlive-fancybox   \
       texlive-fancyhdr texlive-fancyref texlive-fancyvrb   \
       texlive-filecontents texlive-filehook texlive-filemod   \
@@ -250,7 +296,9 @@ RUN rpm-ostree install abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       texlive-gettitlestring texlive-gincltex texlive-glyphlist   \
       texlive-graphics texlive-graphics-cfg texlive-grfext   \
       texlive-grffile texlive-helvetic texlive-hobsub texlive-hologo   && \
-    rpm-ostree install texlive-hopatch texlive-hycolor texlive-hypdoc   \
+    rm -vrf /var && \
+    ostree container commit
+RUN rpm-ostree install texlive-hopatch texlive-hycolor texlive-hypdoc   \
       texlive-hyperref texlive-hyphenex texlive-ifmtarg   \
       texlive-ifoddpage texlive-ifplatform texlive-iftex texlive-index   \
       texlive-infwarerr texlive-intcalc texlive-jknapltx   \
@@ -260,7 +308,9 @@ RUN rpm-ostree install abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       texlive-l3packages texlive-latex texlive-latexbug   \
       texlive-latexconfig texlive-latex-fonts texlive-latex-lab   \
       texlive-letltxmacro texlive-lineno texlive-listings texlive-lm   && \
-    rpm-ostree install texlive-lm-math texlive-logreq texlive-ltabptch   \
+    rm -vrf /var && \
+    ostree container commit
+RUN rpm-ostree install texlive-lm-math texlive-logreq texlive-ltabptch   \
       texlive-ltxcmds texlive-ltxmisc texlive-lua-alt-getopt   \
       texlive-luabidi texlive-luahbtex texlive-lualatex-math   \
       texlive-lualibs texlive-luaotfload texlive-luatexbase   \
@@ -270,7 +320,9 @@ RUN rpm-ostree install abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       texlive-mdwtools texlive-memoir texlive-metafont   \
       texlive-metalogo texlive-mflogo texlive-mfnfss texlive-mfware   \
       texlive-microtype texlive-minitoc texlive-mnsymbol texlive-modes   && \
-    rpm-ostree install texlive-mparhack texlive-mptopdf texlive-ms   \
+    rm -vrf /var && \
+    ostree container commit
+RUN rpm-ostree install texlive-mparhack texlive-mptopdf texlive-ms   \
       texlive-multido texlive-natbib texlive-newfloat   \
       texlive-notoccite texlive-ntgclass texlive-oberdiek   \
       texlive-pagesel texlive-palatino texlive-paralist   \
@@ -281,7 +333,9 @@ RUN rpm-ostree install abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       texlive-picture texlive-placeins texlive-polyglossia   \
       texlive-psfrag texlive-pslatex texlive-psnfss   \
       texlive-pspicture texlive-pst-3d   && \
-    rpm-ostree install texlive-pst-coil texlive-pst-eps   \
+    rm -vrf /var && \
+    ostree container commit
+RUN rpm-ostree install texlive-pst-coil texlive-pst-eps   \
       texlive-pst-fill texlive-pst-grad texlive-pst-math   \
       texlive-pst-node texlive-pst-ovl texlive-pst-plot   \
       texlive-pstricks texlive-pstricks-add texlive-pst-text   \
@@ -291,7 +345,9 @@ RUN rpm-ostree install abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       texlive-sauerj texlive-section texlive-seminar texlive-sepnum   \
       texlive-setspace texlive-showexpl texlive-standalone   \
       texlive-stringenc texlive-subfig texlive-svn-prov texlive-symbol   && \
-    rpm-ostree install texlive-tex texlive-texlive-common-doc   \
+    rm -vrf /var && \
+    ostree container commit
+RUN rpm-ostree install texlive-tex texlive-texlive-common-doc   \
       texlive-texlive-en texlive-texlive-msg-translations   \
       texlive-textcase texlive-thumbpdf texlive-times texlive-tipa   \
       texlive-titlesec texlive-tools texlive-translator   \
@@ -301,13 +357,17 @@ RUN rpm-ostree install abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       texlive-xdvi texlive-xetex texlive-xetexconfig   \
       texlive-xifthen texlive-xkeyval texlive-xltxtra texlive-xpatch   \
       texlive-xstring texlive-xunicode texlive-zapfding   && \
-    rpm-ostree install texlive-zref tigervnc tigervnc-icons   \
+    rm -vrf /var && \
+    ostree container commit
+RUN rpm-ostree install texlive-zref tigervnc tigervnc-icons   \
       tigervnc-license tmux tracer-common traceroute trousers tss2 unrar   \
       urw-base35-fonts-legacy usbredir utf8proc vconfig virglrenderer virtiofsd   \
       virt-manager virt-manager-common xapian-core-libs xclip   \
       xdelta xen-libs xen-licenses xl2tpd xmlrpc-c   \
       xmlrpc-c-client xorg-x11-fonts-ISO8859-1-100dpi xorriso   \
       xpdf-libs xsel xz-devel yum   && \
-    rpm-ostree install zd1211-firmware zisofs-tools zlib-ng zsh   && \
+    rm -vrf /var && \
+    ostree container commit
+RUN rpm-ostree install zd1211-firmware zisofs-tools zlib-ng zsh   && \
     rm -vrf /var && \
     ostree container commit
