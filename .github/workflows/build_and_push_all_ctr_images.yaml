@@ -1,7 +1,7 @@
 name: build and push all container images
 on:
   schedule:
-    - cron: "21 21 * * *"
+  - cron: "21 21 * * *"
   push:
     branches: ["main"]
 
@@ -16,28 +16,28 @@ jobs:
       contents: read
       packages: write
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+    - name: Checkout repo
+      uses: actions/checkout@v4
 
-      - name: Build container image
-        uses: redhat-actions/buildah-build@v2
-        with:
-          context: "ostree-zfs-base"
-          containerfiles: "ostree-zfs-base/Containerfile"
-          image: ostree-zfs-base
-          layers: false
-          oci: true
+    - name: Build container image
+      uses: redhat-actions/buildah-build@v2
+      with:
+        context: "ostree-zfs-base"
+        containerfiles: "ostree-zfs-base/Containerfile"
+        image: ostree-zfs-base
+        layers: false
+        oci: true
 
-      - name: Push to ghcr.io
-        uses: redhat-actions/push-to-registry@v2
-        with:
-          image: ostree-zfs-base
-          tags: "latest"
-          registry: ${{ env.IMAGE_REGISTRY }}
-          username: ${{ env.REGISTRY_USER }}
-          password: ${{ env.REGISTRY_PASSWORD }}
-          extra-args: |
-            --disable-content-trust
+    - name: Push to ghcr.io
+      uses: redhat-actions/push-to-registry@v2
+      with:
+        image: ostree-zfs-base
+        tags: "latest"
+        registry: ${{ env.IMAGE_REGISTRY }}
+        username: ${{ env.REGISTRY_USER }}
+        password: ${{ env.REGISTRY_PASSWORD }}
+        extra-args: |
+          --disable-content-trust
 
   ostree-base:
     runs-on: ubuntu-latest
@@ -45,28 +45,28 @@ jobs:
       contents: read
       packages: write
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+    - name: Checkout repo
+      uses: actions/checkout@v4
 
-      - name: Build container image
-        uses: redhat-actions/buildah-build@v2
-        with:
-          context: "ostree-base"
-          containerfiles: "ostree-base/Containerfile"
-          image: ostree-base
-          layers: false
-          oci: true
+    - name: Build container image
+      uses: redhat-actions/buildah-build@v2
+      with:
+        context: "ostree-base"
+        containerfiles: "ostree-base/Containerfile"
+        image: ostree-base
+        layers: false
+        oci: true
 
-      - name: Push to ghcr.io
-        uses: redhat-actions/push-to-registry@v2
-        with:
-          image: ostree-base
-          tags: "latest"
-          registry: ${{ env.IMAGE_REGISTRY }}
-          username: ${{ env.REGISTRY_USER }}
-          password: ${{ env.REGISTRY_PASSWORD }}
-          extra-args: |
-            --disable-content-trust
+    - name: Push to ghcr.io
+      uses: redhat-actions/push-to-registry@v2
+      with:
+        image: ostree-base
+        tags: "latest"
+        registry: ${{ env.IMAGE_REGISTRY }}
+        username: ${{ env.REGISTRY_USER }}
+        password: ${{ env.REGISTRY_PASSWORD }}
+        extra-args: |
+          --disable-content-trust
 
   ostree-supermicro-x10sri-f:
     needs: ostree-base
@@ -75,25 +75,25 @@ jobs:
       contents: read
       packages: write
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+    - name: Checkout repo
+      uses: actions/checkout@v4
 
-      - name: Build container image
-        uses: redhat-actions/buildah-build@v2
-        with:
-          context: "ostree-supermicro-x10sri-f"
-          containerfiles: "ostree-supermicro-x10sri-f/Containerfile"
-          image: ostree-supermicro-x10sri-f
-          layers: false
-          oci: true
+    - name: Build container image
+      uses: redhat-actions/buildah-build@v2
+      with:
+        context: "ostree-supermicro-x10sri-f"
+        containerfiles: "ostree-supermicro-x10sri-f/Containerfile"
+        image: ostree-supermicro-x10sri-f
+        layers: false
+        oci: true
 
-      - name: Push to ghcr.io
-        uses: redhat-actions/push-to-registry@v2
-        with:
-          image: ostree-supermicro-x10sri-f
-          tags: "latest"
-          registry: ${{ env.IMAGE_REGISTRY }}
-          username: ${{ env.REGISTRY_USER }}
-          password: ${{ env.REGISTRY_PASSWORD }}
-          extra-args: |
-            --disable-content-trust
+    - name: Push to ghcr.io
+      uses: redhat-actions/push-to-registry@v2
+      with:
+        image: ostree-supermicro-x10sri-f
+        tags: "latest"
+        registry: ${{ env.IMAGE_REGISTRY }}
+        username: ${{ env.REGISTRY_USER }}
+        password: ${{ env.REGISTRY_PASSWORD }}
+        extra-args: |
+          --disable-content-trust
