@@ -31,10 +31,7 @@ for pkg in $(cat current-host-rpm-packages.txt); do
     pkg_cnt=0
     line_len=${#pkg}
     echo "  && \\"
-    echo "    rm -vrf /var && \\"
-    echo "    ostree container commit"
-    #echo
-    echo -n "RUN rpm-ostree install $pkg "
+    echo -n "    rpm-ostree install $pkg "
     continue
   fi
 
