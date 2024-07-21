@@ -10,8 +10,13 @@ RUN cd /tmp && \
 
 FROM ghcr.io/mtk-hub/ostree-zfs-base:latest
 
-COPY --from=builder /tmp/gocryptfs*.rpm /tmp
+# We're a podman shop
+RUN rpm-ostree uninstall moby-engine && \
+    rm -vrf /var && \
+    ostree container commit
 
+# gocryptfs
+COPY --from=builder /tmp/gocryptfs*.rpm /tmp
 RUN rpm-ostree install /tmp/gocryptfs*.rpm && \
     rm /tmp/gocryptfs*.rpm && \
     # cleanup and verification stage
