@@ -1,4 +1,5 @@
-FROM quay.io/fedora/fedora-silverblue:39
+#FROM quay.io/fedora/fedora-silverblue:40
+FROM quay.io/fedora/fedora-coreos:stable
 
 RUN rpm -qa kernel --queryformat '%{VERSION}-%{RELEASE}.%{ARCH}' > /kernel_version.txt
 
@@ -8,7 +9,7 @@ RUN lsinitrd "/lib/modules/$(cat /kernel_version.txt)/initramfs.img"  | grep '^A
     cat /initrd_stock_args.txt
 
 # Install ZFS repository
-RUN rpm-ostree install https://zfsonlinux.org/fedora/zfs-release-2-4$(rpm --eval "%{dist}").noarch.rpm && \
+RUN rpm-ostree install https://zfsonlinux.org/fedora/zfs-release-2-5$(rpm --eval "%{dist}").noarch.rpm && \
     rm -vrf /var/* /tmp/* /*.rpm && \
     ostree container commit
 
