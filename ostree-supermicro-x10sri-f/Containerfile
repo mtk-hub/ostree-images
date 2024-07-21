@@ -125,7 +125,7 @@ RUN rpm-ostree install abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       perl-Time-ParseDate perl-Try-Tiny perl-Variable-Magic   \
       perl-WWW-RobotRules perl-XML-LibXML perl-XML-LibXML-Simple   \
       perl-XML-LibXSLT perl-XML-NamespaceSupport perl-XML-SAX   \
-      perl-XML-SAX-Base perl-XML-Writer perl-XString podman-plugins   \
+      perl-XML-SAX-Base perl-XML-Writer perl-XString   \
       postfix potrace protobuf-compiler psacct   \
       pulseaudio-utils python3-abrt   && \
     rpm-ostree install python3-abrt-addon python3-aiodns   \
