@@ -1,5 +1,6 @@
 name: build and push all container images
 on:
+  workflow_dispatch:
   schedule:
   - cron: "21 21 * * *"
   push:
