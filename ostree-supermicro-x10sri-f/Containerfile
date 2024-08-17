@@ -217,8 +217,7 @@ RUN rpm-ostree install abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       setserial shorewall shorewall-core sil-mingzat-fonts   \
       source-highlight spice-glib spice-gtk3 spice-server   \
       squashfs-tools sscg subversion subversion-libs swtpm swtpm-libs   \
-      swtpm-selinux swtpm-tools symlinks systemd-container systemtap   \
-      systemtap-client systemtap-runtime tcpdump   \
+      swtpm-selinux swtpm-tools symlinks systemd-container tcpdump   \
       tcp_wrappers tcp_wrappers-libs teamd   && \
     rpm-ostree install teckit telnet texlive-adjustbox texlive-ae   \
       texlive-algorithms texlive-alphalph texlive-amscls   \
