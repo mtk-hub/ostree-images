@@ -20,7 +20,7 @@ RUN test -f /usr/bin/ld || ln -s /usr/bin/ld.bfd /usr/bin/ld
 # - https://github.com/ublue-os/ucore/pull/186
 COPY --from=akmods-zfs /rpms /tmp/rpms/akmods-zfs
 RUN rpm-ostree install /tmp/rpms/akmods-zfs/kmods/zfs/other/zfs-dracut-*.rpm && \
-    rm -vrf /var/* && \
+    rm -vrf /var/* /tmp/*  && \
     ostree container commit
 
 # Add samsung usb udev rules so that dracut picks them up (makes trim work)
@@ -60,7 +60,7 @@ RUN mkdir -p /var/tmp && \
     mkdir -p /tmp/dracut /var/roothome && \
     cat /initrd_stock_args.txt && \
     bash <(/usr/bin/echo "/usr/libexec/rpm-ostree/wrapped/dracut $(cat /initrd_stock_args.txt)") && \
-    rm -rf /var/* /tmp/*  && \
+    rm -vrf /var/* /tmp/*  && \
     ostree container commit
 
 # Backup stock initrd if it exists
@@ -71,7 +71,7 @@ RUN test -f "/lib/modules/$(cat /kernel_version.txt)/initramfs.img" && \
 # Move the new initrd into place while keeping the stock initrd in the image for reference.
 RUN mkdir -p /var/tmp && \
     mv -v /boot/initramfs*.img "/lib/modules/$(cat /kernel_version.txt)/initramfs.img" && \
-    rm -rf /var/* /tmp/*  && \
+    rm -vrf /var/* /tmp/*  && \
     ostree container commit
 
 # Show that the initrd includes the samsung udev rules service:
