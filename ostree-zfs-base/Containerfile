@@ -18,8 +18,8 @@ RUN test -f /usr/bin/ld || ln -s /usr/bin/ld.bfd /usr/bin/ld
 
 # TODO: Remove this when zfs-dracut is included directly in ucore:
 # - https://github.com/ublue-os/ucore/pull/186
-RUN --mount=from=akmods-zfs,src=/rpms,dst=/tmp/rpms/akmods-zfs \
-    rpm-ostree install /tmp/rpms/akmods-zfs/kmods/zfs/other/zfs-dracut-*.rpm && \
+COPY --from=akmods-zfs /rpms /tmp/rpms/akmods-zfs
+RUN rpm-ostree install /tmp/rpms/akmods-zfs/kmods/zfs/other/zfs-dracut-*.rpm && \
     rm -vrf /var/* && \
     ostree container commit
 
