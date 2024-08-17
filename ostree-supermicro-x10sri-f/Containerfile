@@ -15,6 +15,11 @@ RUN mv /usr/bin/cat /usr/bin/cat.orig && \
     rm -vrf /var && \
     ostree container commit
 
+# Removing nfs-utils-coreos because it conflicts with nfs-utils which is an explicit dependency of one of the packages below.
+RUN rpm-ostree uninstall nfs-utils-coreos && \
+    rm -vrf /var && \
+    ostree container commit
+
 # Align packages with those on current host today
 # AUTO-GENERATED from scripts in files/package_list/
 RUN rpm-ostree install abrt abrt-addon-ccpp abrt-addon-kerneloops   \
