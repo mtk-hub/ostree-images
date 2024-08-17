@@ -1,5 +1,8 @@
-#FROM quay.io/fedora/fedora-silverblue:40
-FROM quay.io/fedora/fedora-coreos:stable
+# This is so we can install zfs-dracut
+FROM ghcr.io/ublue-os/akmods-zfs:coreos-stable-40 as akmods-zfs
+
+# Main image build
+FROM ghcr.io/ublue-os/ucore:stable-zfs
 
 RUN rpm -qa kernel --queryformat '%{VERSION}-%{RELEASE}.%{ARCH}' > /kernel_version.txt
 
@@ -8,26 +11,16 @@ RUN lsinitrd "/lib/modules/$(cat /kernel_version.txt)/initramfs.img"  | grep '^A
     echo -n "mkinitrd args: " && \
     cat /initrd_stock_args.txt
 
-# Install ZFS repository
-RUN rpm-ostree install https://zfsonlinux.org/fedora/zfs-release-2-5$(rpm --eval "%{dist}").noarch.rpm && \
-    rm -vrf /var/* /tmp/* /*.rpm && \
-    ostree container commit
-
-# Install dkms deps
-RUN rpm-ostree install \
-    kernel-devel kernel-devel-matched kernel-headers kernel-srpm-macros && \
-    rm -vrf /var/* /tmp/*  && \
-    ostree container commit
-
 # TODO: Remove the following line once these bugs are fixed:
 # - https://github.com/coreos/rpm-ostree/issues/4201
 # - https://github.com/coreos/rpm-ostree/issues/1614
 RUN test -f /usr/bin/ld || ln -s /usr/bin/ld.bfd /usr/bin/ld
 
-# Install zfs and tell dkms to install the module
-RUN rpm-ostree install zfs zfs-dracut && \
-    dkms autoinstall -k $(cat /kernel_version.txt) && \
-    rm -vrf /var/* /tmp/*  && \
+# TODO: Remove this when zfs-dracut is included directly in ucore:
+# - https://github.com/ublue-os/ucore/pull/186
+RUN --mount=type=bind,from=akmods-zfs,src=/rpms,dst=/tmp/rpms/akmods-zfs \
+    rpm-ostree install /tmp/rpms/akmods-zfs/kmods/zfs/other/zfs-dracut-*.rpm && \
+    rm -vrf /var/* && \
     ostree container commit
 
 # Add samsung usb udev rules so that dracut picks them up (makes trim work)
@@ -66,7 +59,7 @@ ADD files/dracut/98topdirs/topdirs.service /usr/lib/systemd/system/topdirs.servi
 RUN mkdir -p /var/tmp && \
     mkdir -p /tmp/dracut /var/roothome && \
     cat /initrd_stock_args.txt && \
-    bash <(/usr/bin/echo "dracut $(cat /initrd_stock_args.txt)") && \
+    bash <(/usr/bin/echo "/usr/libexec/rpm-ostree/wrapped/dracut $(cat /initrd_stock_args.txt)") && \
     rm -rf /var/* /tmp/*  && \
     ostree container commit
 
@@ -88,9 +81,3 @@ RUN lsinitrd /lib/modules/*/initramfs.img | grep 10-samsung-usb.rules
 # - https://github.com/coreos/rpm-ostree/issues/4201
 # - https://github.com/coreos/rpm-ostree/issues/1614
 RUN test -h /usr/bin/ld && rm -v /usr/bin/ld || echo "Skipping removing ld hack, doesn't exist or isn't a symlink"
-
-# Install sanoid from rpm
-ADD files/sanoid/sanoid-2.2.0-1.fc39.noarch.rpm /root
-RUN rpm-ostree install /root/sanoid-2.2.0-1.fc39.noarch.rpm && \
-    rm -rf /var/* /tmp/*  && \
-    ostree container commit
