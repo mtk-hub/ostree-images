@@ -15,6 +15,9 @@ RUN mv /usr/bin/cat /usr/bin/cat.orig && \
     rm -vrf /var && \
     ostree container commit
 
+# This is necessary for alternatives to work when installing the packages below.
+RUN mkdir -p /var/lib/alternatives
+
 # Align packages with those on current host today
 # AUTO-GENERATED from scripts in files/package_list/
 RUN rpm-ostree install abrt abrt-addon-ccpp abrt-addon-kerneloops   \
