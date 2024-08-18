@@ -22,6 +22,7 @@ adobe-mappings-pdf
 adobe-source-code-pro-fonts
 adwaita-cursor-theme
 adwaita-icon-theme
+adwaita-icon-theme-legacy
 alsa-lib
 alternatives
 amd-gpu-firmware
@@ -32,9 +33,11 @@ ansible
 ansible-core
 ansible-srpm-macros
 apcupsd
+appstream
+appstream-data
 apr
 apr-util
-apr-util-bdb
+apr-util-lmdb
 apr-util-openssl
 at
 atheros-firmware
@@ -47,6 +50,7 @@ at-spi2-core
 attr
 audit
 audit-libs
+audit-rules
 augeas-libs
 authselect
 authselect-libs
@@ -110,6 +114,7 @@ clang16-resource-filesystem
 clevis
 clevis-luks
 clevis-pin-tpm2
+cmake-filesystem
 cockpit
 cockpit-bridge
 cockpit-networkmanager
@@ -120,6 +125,8 @@ cockpit-system
 cockpit-ws
 colord-libs
 compat-readline5
+composefs
+composefs-libs
 compsize
 conmon
 containernetworking-plugins
@@ -277,6 +284,7 @@ gcr3-base
 gcr-libs
 gd
 gdb-headless
+gdbm
 gdbm-libs
 gdisk
 gdk-pixbuf2
@@ -327,6 +335,8 @@ google-noto-serif-vf-fonts
 go-srpm-macros
 gperftools-libs
 gpgme
+gpgmepp
+gpg-pubkey
 gpg-pubkey
 gpg-pubkey
 gpg-pubkey
@@ -378,6 +388,7 @@ gtk-vnc2
 gts
 guile
 guile22
+guile30
 gupnp
 gupnp-igd
 gvisor-tap-vsock
@@ -417,7 +428,6 @@ iproute
 iproute-tc
 ipset
 ipset-libs
-iptables-compat
 iptables-legacy
 iptables-legacy-libs
 iptables-libs
@@ -456,6 +466,7 @@ kbd
 kbd-legacy
 kbd-misc
 kde-filesystem
+kdump-utils
 kernel
 kernel
 kernel
@@ -646,6 +657,7 @@ libmount
 libmpc
 libmspack
 libmysofa
+libnbd
 libndp
 libnet
 libnetapi
@@ -822,6 +834,7 @@ libxcrypt-compat
 libxcrypt-devel
 libXcursor
 libXdamage
+libxdp
 libXext
 libXfixes
 libXft
@@ -831,6 +844,7 @@ libxkbcommon
 libxkbcommon-x11
 libxml++
 libxml2
+libxmlb
 libXmu
 libXpm
 libXrandr
@@ -870,8 +884,8 @@ lzo
 lzop
 m4
 mailcap
-mailx
 make
+makedumpfile
 man-db
 man-pages
 mcelog
@@ -905,6 +919,13 @@ mtdev
 mtr
 nano
 nano-default-editor
+nbdkit
+nbdkit-basic-filters
+nbdkit-basic-plugins
+nbdkit-curl-plugin
+nbdkit-selinux
+nbdkit-server
+nbdkit-ssh-plugin
 ncurses
 ncurses-base
 ncurses-libs
@@ -994,7 +1015,6 @@ parquet-libs
 parted
 passt
 passt-selinux
-passwd
 passwdqc
 passwdqc-utils
 patch
@@ -1150,7 +1170,6 @@ perl-Mail-Sender
 perl-Mail-Sendmail
 perl-MailTools
 perl-Math-BigInt
-perl-Math-BigRat
 perl-Math-Complex
 perl-meta-notation
 perl-MIME-Base64
@@ -1274,6 +1293,7 @@ pipewire-libs
 pipewire-pulseaudio
 pixman
 pkcs11-helper
+pkcs11-provider
 pkgconf
 pkgconf-m4
 pkgconf-pkg-config
@@ -1333,10 +1353,13 @@ python3-beautifulsoup4
 python3-bleach
 python3-blosc
 python3-blosc2
+python3-boto3
+python3-botocore
 python3-Bottleneck
 python3-brotli
 python3-cachetools
 python3-cairo
+python3-certifi
 python3-cffi
 python3-charset-normalizer
 python3-click
@@ -1378,7 +1401,6 @@ python3-gcsfs
 python3-gmpy2
 python3-gobject
 python3-gobject-base
-python3-gobject-base-noarch
 python3-google-api-core
 python3-googleapis-common-protos
 python3-google-auth
@@ -1391,8 +1413,11 @@ python3-gpg
 python3-greenlet
 python3-grpcio
 python3-grpcio-status
+python3-h11
 python3-hawkey
 python3-html5lib
+python3-httpcore
+python3-httpx
 python3-hyperlink
 python3-idna
 python3-imageio
@@ -1407,6 +1432,7 @@ python3-isoduration
 python3-jdcal
 python3-jedi
 python3-jinja2
+python3-jmespath
 python3-joblib
 python3-json5
 python3-json-logger
@@ -1524,6 +1550,7 @@ python3-rpds-py
 python3-rpm
 python3-rpmconf
 python3-rsa
+python3-s3transfer
 python3-satyr
 python3-scikit-image
 python3-scikit-learn
@@ -1607,8 +1634,11 @@ qemu-device-display-virtio-gpu-ccw
 qemu-device-display-virtio-gpu-gl
 qemu-device-display-virtio-gpu-pci
 qemu-device-display-virtio-gpu-pci-gl
+qemu-device-display-virtio-gpu-pci-rutabaga
+qemu-device-display-virtio-gpu-rutabaga
 qemu-device-display-virtio-vga
 qemu-device-display-virtio-vga-gl
+qemu-device-display-virtio-vga-rutabaga
 qemu-device-usb-host
 qemu-device-usb-redirect
 qemu-device-usb-smartcard
@@ -1671,13 +1701,15 @@ roc-toolkit
 rootfiles
 rpcbind
 rpm
-rpmautospec-rpm-macros
 rpm-build-libs
 rpmconf
 rpmconf-base
+rpmfusion-free-appstream-data
 rpmfusion-free-release
+rpmfusion-nonfree-appstream-data
 rpmfusion-nonfree-release
 rpm-libs
+rpm-plugin-audit
 rpm-plugin-selinux
 rpm-plugin-systemd-inhibit
 rpm-sequoia
@@ -1687,11 +1719,11 @@ rsvg-pixbuf-loader
 rsync
 rsync-bpc
 rsyslog
-rsyslog-logrotate
 rtkit
 rtl-sdr
 runc
 rust-srpm-macros
+rutabaga-gfx-ffi
 samba
 samba-client
 samba-client-libs
@@ -1703,6 +1735,7 @@ samba-ldb-ldap-modules
 samba-libs
 satyr
 screen
+scrub
 SDL2
 SDL2_image
 seabios-bin
@@ -1727,6 +1760,7 @@ slang
 slirp4netns
 smartmontools
 smartmontools-selinux
+s-nail
 snappy
 sombok
 sord
@@ -2111,6 +2145,7 @@ urw-base35-standard-symbols-ps-fonts
 urw-base35-z003-fonts
 usb_modeswitch
 usb_modeswitch-data
+usbmuxd
 usbredir
 usbutils
 userspace-rcu
@@ -2136,7 +2171,10 @@ vulkan-loader
 web-assets-filesystem
 webp-pixbuf-loader
 webrtc-audio-processing
-wget
+webrtc-audio-processing0.3
+wget2
+wget2-libs
+wget2-wget
 which
 whois
 whois-nls
@@ -2156,6 +2194,7 @@ xdelta
 xdg-desktop-portal
 xdg-desktop-portal-gtk
 xdg-utils
+xdriinfo
 xen-libs
 xen-licenses
 xfsprogs
@@ -2183,11 +2222,12 @@ zchunk-libs
 zd1211-firmware
 zeromq
 zfs-fuse
+zig-srpm-macros
 zip
 zisofs-tools
-zlib
-zlib-devel
 zlib-ng
+zlib-ng-compat
+zlib-ng-compat-devel
 zram-generator
 zram-generator-defaults
 zsh
