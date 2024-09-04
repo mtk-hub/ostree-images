@@ -1,6 +1,3 @@
-# This is so we can install zfs-dracut
-FROM ghcr.io/ublue-os/akmods-zfs:coreos-stable-40 as akmods-zfs
-
 # Main image build
 FROM ghcr.io/ublue-os/ucore:stable-zfs
 
@@ -15,13 +12,6 @@ RUN lsinitrd "/lib/modules/$(cat /kernel_version.txt)/initramfs.img"  | grep '^A
 # - https://github.com/coreos/rpm-ostree/issues/4201
 # - https://github.com/coreos/rpm-ostree/issues/1614
 RUN test -f /usr/bin/ld || ln -s /usr/bin/ld.bfd /usr/bin/ld
-
-# TODO: Remove this when zfs-dracut is included directly in ucore:
-# - https://github.com/ublue-os/ucore/pull/186
-COPY --from=akmods-zfs /rpms /tmp/rpms/akmods-zfs
-RUN rpm-ostree install /tmp/rpms/akmods-zfs/kmods/zfs/other/zfs-dracut-*.rpm && \
-    rm -vrf /var/* /tmp/*  && \
-    ostree container commit
 
 # Add samsung usb udev rules so that dracut picks them up (makes trim work)
 COPY files/dracut/10samsung-usb-udev /usr/lib/dracut/modules.d/10samsung-usb-udev/
