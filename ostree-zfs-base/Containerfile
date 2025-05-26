@@ -32,9 +32,8 @@ ADD files/selinux/twiest-zfs-selinux.service /etc/systemd/system/
 RUN systemctl enable twiest-zfs-selinux
 
 # Install dracut requirements
-RUN rpm-ostree install lsscsi busybox rng-tools dmraid nvme-cli biosdevname device-mapper-multipath && \
-    rm -vrf /var/* /tmp/*  && \
-    ostree container commit
+RUN dnf -y install lsscsi busybox rng-tools nvme-cli biosdevname device-mapper-multipath && \
+     dnf clean all
 
 # Setup zfs for inclusion in dracut
 RUN echo 'add_dracutmodules+=" zfs "' > /etc/dracut.conf.d/zfs.conf && \
@@ -49,7 +48,7 @@ ADD files/dracut/98topdirs/topdirs.service /usr/lib/systemd/system/topdirs.servi
 RUN mkdir -p /var/tmp && \
     mkdir -p /tmp/dracut /var/roothome && \
     cat /initrd_stock_args.txt && \
-    bash <(/usr/bin/echo "/usr/libexec/rpm-ostree/wrapped/dracut $(cat /initrd_stock_args.txt)") && \
+    bash <(/usr/bin/echo "/usr/sbin/dracut $(cat /initrd_stock_args.txt)") && \
     rm -vrf /var/* /tmp/*  && \
     ostree container commit
 
