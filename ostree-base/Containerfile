@@ -11,42 +11,35 @@ RUN cd /tmp && \
 FROM ghcr.io/mtk-hub/ostree-zfs-base:latest
 
 # We're a podman shop
-RUN rpm-ostree uninstall moby-engine && \
-    rm -vrf /var && \
-    ostree container commit
+RUN dnf remove -y moby-engine docker-cli && \
+    dnf clean all
 
 # gocryptfs
 COPY --from=builder /tmp/gocryptfs*.rpm /tmp
-RUN rpm-ostree install /tmp/gocryptfs*.rpm && \
+RUN dnf install -y /tmp/gocryptfs*.rpm && \
     rm /tmp/gocryptfs*.rpm && \
-    # cleanup and verification stage
-    rm -vrf /var && \
-    ostree container commit
+    dnf clean all
 
 # Install rpmfusion repos
-RUN rpm-ostree install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm && \
-    rpm-ostree install https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm && \
-    # cleanup and verification stage
-    rm -vrf /var && \
-    ostree container commit
+RUN dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm && \
+    dnf install -y https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm && \
+    dnf clean all
 
 # Install the basics
 # TODO: evaluate restic as a multi-threaded possible replacement for borg once restic reaches 1.0 status
 #       https://github.com/restic/restic
-RUN rpm-ostree install \
-    distrobox iotop screen snapper strace terminator thunderbird vim gnome-tweak-tool neofetch fuse-encfs borgbackup \
+RUN dnf install -y \
+    distrobox iotop screen snapper strace terminator thunderbird vim gnome-tweak-tool fastfetch fuse-encfs borgbackup \
     keepassxc vlc seahorse htop rclone inxi fio cracklib-dicts hwinfo gst ipmitool pv fuse-sshfs nvme-cli nc gdisk \
     etckeeper sg3_utils lshw podman-docker docker-compose smartmontools gsmartcontrol hdparm zstd pbzip2 lz4 parted \
     udisks2-btrfs udisks2-lvm2 udisks2-iscsi easyeffects android-tools wireguard-tools iperf3 rdfind && \
     ln -vsf /usr/bin/ncat /usr/bin/nc && \
-    # cleanup and verification stage
-    rm -vrf /var && \
-    ostree container commit
+    dnf clean all
 
 # Install tailscale
 RUN cd /etc/yum.repos.d/ && curl -LO https://pkgs.tailscale.com/stable/fedora/tailscale.repo && \
-    rpm-ostree install tailscale && \
-    ostree container commit
+    dnf install -y tailscale && \
+    dnf clean all
 
 # Add tcpping for convenience
 ADD files/cli/tcpping /usr/bin/tcpping
