@@ -8,7 +8,7 @@ RUN cd /tmp && \
     alien --to-rpm --scripts --fixperms gocryptfs*.deb
 
 
-FROM ghcr.io/mtk-hub/ostree-zfs-base:latest
+FROM ghcr.io/ublue-os/ucore:stable-zfs
 
 # We're a podman shop
 RUN dnf remove -y moby-engine docker-cli && \

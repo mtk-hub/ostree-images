@@ -15,6 +15,9 @@ RUN mv /usr/bin/cat /usr/bin/cat.orig && \
 # This is necessary for alternatives to work when installing the packages below.
 RUN mkdir -p /var/lib/alternatives
 
+# ZFS Mount point
+RUN mkdir /fun
+
 # Align packages with those on current host today
 # AUTO-GENERATED from scripts in files/package_list/
 RUN dnf install -y abrt abrt-addon-ccpp abrt-addon-kerneloops   \
