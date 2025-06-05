@@ -11,35 +11,6 @@ env:
   REGISTRY_USER: ${{ github.actor }}
   REGISTRY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
 jobs:
-  ostree-zfs-base:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-    steps:
-    - name: Checkout repo
-      uses: actions/checkout@v4
-
-    - name: Build container image
-      uses: redhat-actions/buildah-build@v2.13
-      with:
-        context: "ostree-zfs-base"
-        containerfiles: "ostree-zfs-base/Containerfile"
-        image: ostree-zfs-base
-        layers: false
-        oci: true
-
-    - name: Push to ghcr.io
-      uses: redhat-actions/push-to-registry@v2.8
-      with:
-        image: ostree-zfs-base
-        tags: "latest"
-        registry: ${{ env.IMAGE_REGISTRY }}
-        username: ${{ env.REGISTRY_USER }}
-        password: ${{ env.REGISTRY_PASSWORD }}
-        extra-args: |
-          --disable-content-trust
-
   ostree-base:
     runs-on: ubuntu-latest
     permissions:
