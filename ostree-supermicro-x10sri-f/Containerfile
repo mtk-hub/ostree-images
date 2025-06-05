@@ -10,55 +10,50 @@ RUN mkdir -p /var/lib/alternatives
 # ZFS Mount point
 RUN mkdir /fun
 
+
 # Align packages with those on current host today
 # AUTO-GENERATED from scripts in files/package_list/
 RUN dnf install -y abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       abrt-addon-pstoreoops abrt-addon-vmcore abrt-addon-xorg abrt-cli   \
       abrt-dbus abrt-libs abrt-plugin-bodhi abrt-tui ack   \
-      annobin-docs ansible ansible-core   \
-      ansible-srpm-macros apcupsd apr apr-util apr-util-lmdb   \
-      apr-util-openssl at atmel-firmware atop augeas-libs b43-fwcutter   \
-      b43-openfwwf BackupPC BackupPC-XS bc biber binutils binutils-gold bison blosc blosc2   \
+      ansible ansible-core apcupsd   \
+      at atmel-firmware atop augeas-libs  \
+      BackupPC BackupPC-XS biber binutils-gold blosc blosc2   \
       bonnie++ boost-atomic boost-filesystem   \
-      boost-program-options boost-regex bridge-utils brlapi brltty capstone   \
-      ccache chkconfig cifs-utils-info cirrus-audio-firmware   \
-      cmake-filesystem   \
+      boost-program-options boost-regex bridge-utils capstone   \
+      ccache chkconfig  \
       cockpit cockpit-packagekit cockpit-ws compat-readline5   \
-      compsize containernetworking-plugins ctags cyrus-sasl   \
-      cyrus-sasl-plain default-editor dejavu-sans-mono-fonts deltarpm   \
-      dhcp-client dhcp-common diffstat dos2unix doxygen   \
-      dracut-config-rescue dwz dyninst ebtables-legacy ed edk2-ovmf   \
-      efi-srpm-macros elfutils elfutils-debuginfod-client   \
-      elfutils-debuginfod-client-devel elfutils-devel elfutils-libelf-devel esmtp   \
+      containernetworking-plugins ctags cyrus-sasl   \
+      dejavu-sans-mono-fonts deltarpm   \
+      diffstat dos2unix doxygen   \
+      dracut-config-rescue dyninst ebtables-legacy edk2-ovmf   \
+      elfutils   \
+      elfutils-debuginfod-client-devel elfutils-devel esmtp   \
       fail2ban-all fail2ban-firewalld fail2ban-hostsdeny   \
       fail2ban-mail fail2ban-selinux fail2ban-sendmail   \
-      fail2ban-server fail2ban-shorewall fd-find fedora-logos-httpd   \
-      flex fltk fontawesome4-fonts fontawesome4-fonts-web   \
-      fontawesome-fonts-web fonts-srpm-macros forge-srpm-macros fpaste   \
-      fpc-srpm-macros fprintd fprintd-pam gawk-all-langpacks   \
-      gdb-headless geolite2-city geolite2-country   \
-      ghc-srpm-macros ghostscript ghostscript-tools-fonts   \
-      ghostscript-tools-printing git git-core-doc glibc-devel glibc-headers-x86   \
-      glibc-langpack-en gnat-srpm-macros gnupg2-smime gnutls-dane   \
-      gnutls-utils google-crc32c go-srpm-macros gperftools-libs GraphicsMagick GraphicsMagick-c++ grpc  \
-      grpc-data grubby gspell gtksourceview4 gtk-vnc2 guile   \
+      fail2ban-server fail2ban-shorewall fd-find  \
+      fltk fontawesome4-fonts fontawesome4-fonts-web   \
+      fontawesome-fonts-web \
+      gdb-headless  \
+      git glibc-headers-x86   \
+      glibc-langpack-en  \
+      gnutls-utils google-crc32c gperftools-libs GraphicsMagick GraphicsMagick-c++ grpc  \
+      grpc-data grubby gtksourceview4 gtk-vnc2 guile   \
       guile22 guile30 gvisor-tap-vsock gvnc hdf5 hdf-libs   \
-      httpd httpd-core httpd-filesystem httpd-tools   \
       initscripts initscripts-rename-device inkscape   \
-      inkscape-libs intel-audio-firmware intel-media-driver   \
-      iptstate ipxe-roms-qemu jigdo js-jquery   \
-      julietaula-montserrat-fonts jupyterlab jwhois  \
-      kf5-filesystem langpacks-core-en langpacks-en   \
-      langpacks-fonts-en ldns lftp lib2geom libaec libappstream-glib   \
+      inkscape-libs intel-media-driver   \
+      ipxe-roms-qemu jigdo js-jquery   \
+      jupyterlab jwhois  \
+      kf5-filesystem  \
+      ldns lftp lib2geom libaec libappstream-glib   \
       libarrow libarrow-acero-libs libarrow-dataset-libs   \
       libarrow-doc libarrow-flight-libs libarrow-glib-libs   \
       libatomic_ops libblkio libburn libcacard libcdr libdbi liberation-fonts-common   \
-      liberation-mono-fonts liberation-sans-fonts liberation-serif-fonts   \
-      libertas-firmware libesmtp libestr libfastjson libfdt libfprint   \
+      libesmtp libestr libfastjson libfdt \
       libgfapi0 libgfrpc0 libgfxdr0 libipt libiscsi libisoburn   \
-      libisofs liblockfile libmbim libmbim-utils libmediainfo   \
-      libpasswdqc libphodav \
-      libpmemobj libpq libpskc libqmi libqmi-utils libqrtr-glib libreport   \
+      libisofs liblockfile libmediainfo   \
+      libphodav \
+      libpmemobj libpq libreport   \
       libreport-cli libreport-fedora libreport-plugin-bugzilla   \
       libreport-plugin-kerneloops libreport-plugin-logger   \
       libreport-plugin-systemd-journal libreport-plugin-ureport libreport-web   \
@@ -77,85 +72,78 @@ RUN dnf install -y abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       libvirt-daemon-kvm libvirt-daemon-lock libvirt-daemon-log   \
       libvirt-daemon-plugin-lockd libvirt-daemon-proxy libvirt-glib libvirt-libs   \
       libvisio libwpd libwpg libwsman1 libxcrypt-compat   \
-      libxcrypt-devel libxdp libzen libzstd-devel linux-atm-libs llhttp   \
-      llvm lua-srpm-macros m4 make   \
-      man-pages mcelog mdevctl mediainfo memstrack mkpasswd   \
-      ModemManager mod_http2 mod_lua mtr nbdkit nbdkit-basic-filters   \
+      libxdp libzen llhttp llvm \
+      mdevctl mediainfo  \
+      nbdkit nbdkit-basic-filters   \
       nbdkit-basic-plugins nbdkit-curl-plugin nbdkit-selinux nbdkit-server   \
-      nbdkit-ssh-plugin nethogs NetworkManager-bluetooth   \
+      nbdkit-ssh-plugin nethogs  \
       NetworkManager-l2tp NetworkManager-libreswan   \
-      NetworkManager-openconnect NetworkManager-openvpn NetworkManager-vpnc   \
-      NetworkManager-wwan nmap nss-tools numad ocaml-srpm-macros   \
-      openblas-srpm-macros openconnect openfec openldap-clients opensc openssl-devel openvpn PackageKit   \
-      PackageKit-glib package-notes-srpm-macros pam_krb5 pam_passwdqc   \
-      pandoc pandoc-common par2cmdline parquet-libs passwdqc   \
-      passwdqc-utils patch patchutils pcre2-utf32 pcsc-lite   \
-      pcsc-lite-ccid perl-Archive-Zip perl-Authen-SASL perl-autodie   \
-      perl-autouse perl-autovivification perl-B-Hooks-EndOfScope   \
+      nmap nss-tools numad  \
+      openfec openldap-clients PackageKit   \
+      pam_krb5  \
+      pandoc pandoc-common par2cmdline parquet-libs \
+      patchutils  \
+      perl-Authen-SASL  \
+      perl-autovivification perl-B-Hooks-EndOfScope   \
       perl-Business-ISBN perl-Business-ISBN-Data perl-Business-ISMN   \
       perl-Business-ISSN perl-CGI perl-Class-Accessor   \
       perl-Class-Data-Inheritable perl-Class-Inspector   \
       perl-Class-Method-Modifiers perl-Class-Singleton perl-Class-XSAccessor   \
-      perl-Convert-ASN1 perl-Data-Compare perl-Data-OptList   \
+      perl-Convert-ASN1 perl-Data-Compare  \
       perl-Data-Uniqid perl-Date-ISO8601 perl-Date-Manip perl-DateTime   \
       perl-DateTime-Calendar-Julian perl-DateTime-Format-Builder   \
       perl-DateTime-Format-Strptime perl-DateTime-Locale perl-DateTime-TimeZone   \
-      perl-DateTime-TimeZone-SystemV perl-DateTime-TimeZone-Tzfile perl-deprecate   \
+      perl-DateTime-TimeZone-SystemV perl-DateTime-TimeZone-Tzfile  \
       perl-Devel-CallChecker perl-Devel-Caller perl-Devel-GlobalDestruction   \
       perl-Devel-LexAlias perl-Devel-StackTrace perl-Dist-CheckConflicts   \
-      perl-DynaLoader-Functions perl-Email-Date-Format perl-English perl-Error   \
-      perl-Eval-Closure perl-Exception-Class perl-Exporter-Tiny perl-ExtUtils-MM-Utils perl-File-Compare   \
-      perl-File-Find-Rule perl-File-Next perl-File-ShareDir perl-filetest   \
-      perl-FindBin perl-GD perl-GD-Barcode perl-Git perl-GSSAPI   \
-      perl-Hash-Util-FieldHash perl-I18N-LangTags perl-IO-String perl-IPC-Cmd   \
-      perl-IPC-Run3 perl-IPC-System-Simple perl-IPC-SysV perl-JSON   \
+      perl-DynaLoader-Functions perl-Email-Date-Format perl-Error   \
+      perl-Eval-Closure perl-Exception-Class perl-Exporter-Tiny  \
+      perl-File-Find-Rule perl-File-Next perl-File-ShareDir  \
+      perl-GD perl-GD-Barcode perl-Git perl-GSSAPI   \
+      perl-IO-String  \
+      perl-IPC-Run3 perl-JSON   \
       perl-LDAP perl-Lexical-SealRequireHints perl-Lexical-Var   \
-      perl-lib perl-Lingua-Translit perl-List-AllUtils   \
+      perl-Lingua-Translit perl-List-AllUtils   \
       perl-List-MoreUtils perl-List-MoreUtils-XS perl-List-SomeUtils   \
-      perl-List-UtilsBy perl-Locale-Maketext   \
-      perl-Locale-Maketext-Simple perl-Log-Dispatch perl-Log-Dispatch-FileRotate perl-Log-Log4perl   \
-      perl-LWP-Protocol-https perl-macros perl-Mail-Sender perl-Mail-Sendmail   \
-      perl-MailTools perl-meta-notation perl-MIME-Charset   \
-      perl-MIME-Lite perl-MIME-Types perl-Module-CoreList   \
-      perl-Module-Implementation perl-Module-Load-Conditional   \
-      perl-Module-Metadata perl-Module-Runtime perl-MRO-Compat   \
+      perl-List-UtilsBy  \
+      perl-Log-Dispatch perl-Log-Dispatch-FileRotate perl-Log-Log4perl   \
+      perl-LWP-Protocol-https perl-Mail-Sender perl-Mail-Sendmail   \
+      perl-MailTools  \
+      perl-MIME-Lite perl-MIME-Types  \
+      perl-Module-Implementation  \
       perl-namespace-autoclean perl-namespace-clean   \
       perl-Net-FTP-AutoReconnect perl-Net-FTP-RetrHandle perl-Net-SMTP-SSL   \
-      perl-Number-Compare perl-Opcode perl-Package-Generator   \
+      perl-Number-Compare  \
       perl-Package-Stash perl-Package-Stash-XS perl-PadWalker   \
-      perl-Params-Check perl-Params-Classify perl-Params-Util   \
+      perl-Params-Classify  \
       perl-Params-Validate perl-Params-ValidationCompiler   \
-      perl-Parse-RecDescent perl-Pod-Html perl-Ref-Util perl-Ref-Util-XS   \
-      perl-Regexp-Common perl-Role-Tiny perl-Safe perl-sigtrap perl-sort   \
-      perl-Sort-Key perl-Specio perl-srpm-macros perl-Sub-Exporter   \
-      perl-Sub-Exporter-Progressive perl-Sub-Identify perl-Sub-Install   \
-      perl-Sys-Syslog perl-TermReadKey perl-Text-Balanced   \
-      perl-Text-BibTeX perl-Text-CSV perl-Text-Glob perl-Text-Roman   \
-      perl-Text-Soundex perl-Thread-Queue perl-threads   \
-      perl-threads-shared perltidy perl-Tie perl-Tie-Cycle   \
-      perl-Tie-RefHash perl-Time-ParseDate perl-Unicode-Collate   \
-      perl-Unicode-LineBreak perl-Unicode-Normalize perl-Unicode-UCD   \
-      perl-Variable-Magic perl-version perl-XML-LibXML   \
+      perl-Parse-RecDescent perl-Ref-Util perl-Ref-Util-XS   \
+      perl-Regexp-Common perl-Role-Tiny  \
+      perl-Sort-Key perl-Specio  \
+      perl-Sub-Exporter-Progressive perl-Sub-Identify  \
+      perl-Text-BibTeX perl-Text-CSV perl-Text-Roman   \
+      perl-Text-Soundex  \
+      perltidy perl-Tie-Cycle   \
+      perl-Time-ParseDate  \
+      perl-Variable-Magic perl-XML-LibXML   \
       perl-XML-LibXML-Simple perl-XML-LibXSLT perl-XML-NamespaceSupport   \
       perl-XML-SAX perl-XML-SAX-Base perl-XML-Writer perl-XString   \
-      pinfo pkcs11-helper pkcs11-provider \
-      plocate plymouth plymouth-core-libs plymouth-scripts   \
-      postfix potrace ppp protobuf-compiler psacct   \
-      pulseaudio-utils pyproject-srpm-macros python3-abrt python3-abrt-addon python3-aiodns   \
+      postfix potrace protobuf-compiler psacct   \
+      python3-abrt python3-abrt-addon python3-aiodns   \
       python3-aiohttp python3-aiohttp+speedups python3-aiosignal   \
       python3-antlr4-runtime python3-anyio   \
       python3-argon2-cffi python3-argon2-cffi-bindings python3-arrow   \
       python3-asttokens python3-async-lru python3-async-timeout   \
       python3-augeas python3-Automat python3-babel python3-backcall   \
       python3-beautifulsoup4 python3-bleach python3-blosc python3-blosc2   \
-      python3-boto3 python3-botocore python3-Bottleneck   \
+      python3-Bottleneck   \
       python3-cachetools python3-cloudpickle python3-comm   \
       python3-constantly python3-cpuinfo python3-cssselect   \
       python3-cython python3-dask python3-dask+array   \
       python3-dask+bag python3-dask+dataframe python3-dask+delayed   \
       python3-decorator python3-defusedxml python3-entrypoints   \
       python3-et_xmlfile python3-executing python3-fastjsonschema   \
-      python3-file-magic python3-fqdn python3-frozenlist python3-fsspec   \
+      python3-fqdn python3-frozenlist python3-fsspec   \
       python3-gcsfs python3-gmpy2 python3-google-api-core   \
       python3-googleapis-common-protos python3-google-auth   \
       python3-google-auth-oauthlib python3-google-cloud-core   \
@@ -165,7 +153,7 @@ RUN dnf install -y abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       python3-hyperlink python3-imageio python3-importlib-metadata python3-incremental python3-inkex   \
       python3-ipykernel python3-ipython   \
       python3-ipython_genutils python3-isoduration python3-jdcal python3-jedi   \
-      python3-jinja2 python3-jmespath python3-joblib python3-json5   \
+      python3-jinja2 python3-joblib python3-json5   \
       python3-json-logger python3-jsonpointer   \
       python3-jsonschema+format-nongpl python3-jupyter-client python3-jupyter-core   \
       python3-jupyter-events python3-jupyterlab_pygments   \
@@ -180,16 +168,16 @@ RUN dnf install -y abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       python3-numexpr python3-oauthlib python3-odfpy python3-openpyxl   \
       python3-pandas python3-pandocfilters python3-parso   \
       python3-partd python3-partd+complete python3-patsy   \
-      python3-pbr python3-pexpect python3-pickleshare python3-prometheus_client   \
+      python3-pbr python3-pickleshare python3-prometheus_client   \
       python3-prompt-toolkit python3-protobuf python3-psycopg2   \
-      python3-ptyprocess python3-pure-eval python3-pyaes python3-pyarrow   \
+      python3-pure-eval python3-pyaes python3-pyarrow   \
       python3-pyasn1-modules python3-pyasynchat python3-pyasyncore   \
       python3-pycares python3-pydot python3-pyglet python3-pygments   \
       python3-pygraphviz python3-PyMySQL python3-pyOpenSSL   \
       python3-pyqt5-sip python3-pyrsistent python3-pyserial   \
       python3-pytz python3-pywt python3-qt5-base python3-QtPy   \
       python3-requests-oauthlib python3-resolvelib python3-rfc3339-validator   \
-      python3-rfc3986-validator python3-rpmconf python3-rsa python3-s3transfer python3-satyr python3-scikit-image   \
+      python3-rfc3986-validator python3-rpmconf python3-rsa python3-satyr python3-scikit-image   \
       python3-scikit-learn python3-scour python3-send2trash   \
       python3-service-identity python3-snappy python3-sniffio   \
       python3-soupsieve python3-sqlalchemy python3-stack-data   \
@@ -202,7 +190,7 @@ RUN dnf install -y abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       python3-xlrd python3-xlsxwriter python3-xlwt python3-yarl   \
       python3-zipp python3-zmq python3-zope-interface   \
       python3-zstandard python-jupyter-filesystem   \
-      python-qt5-rpm-macros python-setuptools-wheel python-srpm-macros   \
+      python-qt5-rpm-macros python-setuptools-wheel  \
       python-systemd-doc qemu-audio-alsa qemu-audio-dbus qemu-audio-jack   \
       qemu-audio-oss qemu-audio-pa qemu-audio-pipewire   \
       qemu-audio-sdl qemu-audio-spice qemu-block-blkio   \
@@ -219,26 +207,25 @@ RUN dnf install -y abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       qemu-device-usb-smartcard qemu-img qemu-kvm qemu-pr-helper qemu-system-x86   \
       qemu-system-x86-core qemu-ui-curses qemu-ui-egl-headless qemu-ui-gtk   \
       qemu-ui-opengl qemu-ui-sdl qemu-ui-spice-app   \
-      qemu-ui-spice-core qemu-user-static qemu-user-static-aarch64   \
+      qemu-ui-spice-core qemu-user-static  \
       qemu-user-static-alpha qemu-user-static-arm   \
       qemu-user-static-hexagon qemu-user-static-hppa   \
       qemu-user-static-loongarch64 qemu-user-static-m68k   \
       qemu-user-static-microblaze qemu-user-static-mips   \
       qemu-user-static-or1k qemu-user-static-ppc qemu-user-static-riscv   \
       qemu-user-static-s390x qemu-user-static-sh4 qemu-user-static-sparc   \
-      qemu-user-static-x86 qemu-user-static-xtensa qt5-srpm-macros   \
-      qt6-srpm-macros re2 redhat-rpm-config   \
-      rrdtool rsync-bpc roc-toolkit realmd remove-retired-packages \
-      rpm-plugin-audit rpmconf rpmconf-base rsyslog \
-      rust-srpm-macros rutabaga-gfx-ffi  samba samba-client samba-client-libs \
-      samba-common samba-common-libs samba-common-tools samba-dcerpc \
+      qemu-user-static-x86 qemu-user-static-xtensa  \
+      re2  \
+      rrdtool rsync-bpc roc-toolkit remove-retired-packages \
+      rpmconf rpmconf-base rsyslog \
+      rutabaga-gfx-ffi samba samba-common-tools samba-dcerpc \
       samba-ldb-ldap-modules samba-libs satyr scrub SDL2_image seabios-bin seavgabios-bin   \
       selinux-policy-minimum setserial shorewall shorewall-core   \
-      sil-mingzat-fonts s-nail sombok sos source-highlight spice-glib   \
-      spice-gtk3 spice-server sscg sssd sssd-kcm sssd-proxy   \
-      stoken-libs subversion subversion-libs sudo-python-plugin   \
+      sil-mingzat-fonts s-nail source-highlight spice-glib   \
+      spice-gtk3 spice-server sscg sssd sssd-proxy   \
+      subversion subversion-libs  \
       swtpm swtpm-libs swtpm-selinux swtpm-tools symlinks   \
-      systemd-networkd systemd-oomd-defaults tcpdump tcp_wrappers tcp_wrappers-libs teckit   \
+      tcpdump tcp_wrappers tcp_wrappers-libs teckit   \
       telnet texlive-adjustbox texlive-ae texlive-algorithms   \
       texlive-alphalph texlive-amscls texlive-amsfonts texlive-amsmath   \
       texlive-anysize texlive-atbegshi texlive-attachfile   \
@@ -313,15 +300,15 @@ RUN dnf install -y abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       texlive-xetex texlive-xetexconfig texlive-xifthen texlive-xkeyval texlive-xltxtra   \
       texlive-xpatch texlive-xstring texlive-xunicode   \
       texlive-zapfding texlive-zref tigervnc tigervnc-icons   \
-      tigervnc-license time tracer-common traceroute tree trousers   \
-      trousers-lib tss2 unrar unzip urw-base35-fonts-legacy   \
-      usb_modeswitch usb_modeswitch-data usbredir utf8proc vconfig   \
-      virglrenderer virtiofsd virt-manager virt-manager-common vpnc   \
-      vpnc-script web-assets-filesystem   \
-      webrtc-audio-processing0.3 wget2 wget2-libs wget2-wget whois whois-nls words   \
+      tigervnc-license tracer-common traceroute trousers   \
+      trousers-lib tss2 unrar urw-base35-fonts-legacy   \
+      usbredir utf8proc vconfig   \
+      virglrenderer virtiofsd virt-manager virt-manager-common  \
+      web-assets-filesystem   \
+      webrtc-audio-processing0.3  \
       xapian-core-libs xclip xdelta xen-libs xen-licenses xl2tpd xmlrpc-c   \
       xmlrpc-c-client xorg-x11-fonts-ISO8859-1-100dpi xorriso   \
-      xpdf-libs xsel xz-devel yum zd1211-firmware zig-srpm-macros   \
-      zip zisofs-tools zlib-ng zlib-ng-compat-devel   \
-      zram-generator-defaults zsh   && \
+      xpdf-libs xsel xz-devel yum zd1211-firmware  \
+      zisofs-tools zlib-ng  \
+      zsh   && \
     dnf clean all
