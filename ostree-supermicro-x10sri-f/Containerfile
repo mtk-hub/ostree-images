@@ -232,7 +232,7 @@ RUN dnf install -y abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       rpm-plugin-audit rpmconf rpmconf-base rsyslog \
       rust-srpm-macros rutabaga-gfx-ffi  samba samba-client samba-client-libs \
       samba-common samba-common-libs samba-common-tools samba-dcerpc \
-      samba-ldb-ldap-modules samba-libssatyr scrub SDL2_image seabios-bin seavgabios-bin   \
+      samba-ldb-ldap-modules samba-libs satyr scrub SDL2_image seabios-bin seavgabios-bin   \
       selinux-policy-minimum setserial shorewall shorewall-core   \
       sil-mingzat-fonts s-nail sombok sos source-highlight spice-glib   \
       spice-gtk3 spice-server sscg sssd sssd-kcm sssd-proxy   \
