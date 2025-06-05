@@ -4,14 +4,6 @@ FROM ghcr.io/mtk-hub/ostree-base:latest
 RUN dnf install -y nut baobab && \
     dnf clean all
 
-# Install Plex server
-ADD files/plex/plex-cat.sh /usr/bin
-RUN mv /usr/bin/cat /usr/bin/cat.orig && \
-    mv /usr/bin/plex-cat.sh /usr/bin/cat && \
-    dnf install -y https://downloads.plex.tv/plex-media-server-new/1.40.1.8227-c0dd5a73e/redhat/plexmediaserver-1.40.1.8227-c0dd5a73e.x86_64.rpm && \
-    mv /usr/bin/cat.orig /usr/bin/cat && \
-    dnf clean all
-
 # This is necessary for alternatives to work when installing the packages below.
 RUN mkdir -p /var/lib/alternatives
 
