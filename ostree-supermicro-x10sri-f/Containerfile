@@ -312,3 +312,17 @@ RUN dnf install -y abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       zisofs-tools zlib-ng  \
       zsh   && \
     dnf clean all
+
+# Cleanup image for linting
+RUN dnf remove -y glusterfs && \
+    sed -i '/gluster/d' /etc/passwd && \
+    sed -i '/gluster/d' /etc/group && \
+    test -f /usr/lib/sysusers.d/abrt.conf || echo -e 'g abrt 173\nu abrt 173 "" /etc/abrt /sbin/nologin' > /usr/lib/sysusers.d/abrt.conf && \
+    test -f /usr/lib/sysusers.d/backuppc.conf || echo -e 'g backuppc 960\nu backuppc 961 "" /var/lib/BackupPC /sbin/nologin' > /usr/lib/sysusers.d/backuppc.conf && \
+    test -f /usr/lib/sysusers.d/ccache.conf || echo -e 'g ccache 959' > /usr/lib/sysusers.d/ccache.conf && \
+    test -f /usr/lib/sysusers.d/libvirt.conf || echo -e 'g libvirt 963' > /usr/lib/sysusers.d/libvirt.conf && \
+    test -f /usr/lib/sysusers.d/qat.conf || echo -e 'g qat 995' > /usr/lib/sysusers.d/qat.conf && \
+    rm -rf /var && mkdir /var
+
+# Verify image is good (must be run last!)
+RUN bootc container lint --fatal-warnings # Lint the image
