@@ -20,11 +20,6 @@ RUN dnf install -y /tmp/gocryptfs*.rpm && \
     rm /tmp/gocryptfs*.rpm && \
     dnf clean all
 
-# Install rpmfusion repos
-RUN dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm && \
-    dnf install -y https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm && \
-    dnf clean all
-
 # Install the basics
 # TODO: evaluate restic as a multi-threaded possible replacement for borg once restic reaches 1.0 status
 #       https://github.com/restic/restic

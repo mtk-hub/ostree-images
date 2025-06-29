@@ -1,5 +1,6 @@
 FROM ghcr.io/mtk-hub/ostree-base:latest
 
+
 # Install UPS software
 RUN dnf install -y nut baobab && \
     dnf clean all
@@ -9,7 +10,6 @@ RUN mkdir -p /var/lib/alternatives
 
 # ZFS Mount point
 RUN mkdir /fun
-
 
 # Align packages with those on current host today
 # AUTO-GENERATED from scripts in files/package_list/
@@ -41,7 +41,7 @@ RUN dnf install -y abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       grpc-data grubby gtksourceview4 gtk-vnc2 guile   \
       guile22 guile30 gvisor-tap-vsock gvnc hdf5 hdf-libs   \
       initscripts initscripts-rename-device inkscape   \
-      inkscape-libs intel-media-driver   \
+      inkscape-libs  \
       ipxe-roms-qemu jigdo js-jquery   \
       jupyterlab jwhois  \
       kf5-filesystem  \
@@ -58,7 +58,7 @@ RUN dnf install -y abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       libreport-plugin-kerneloops libreport-plugin-logger   \
       libreport-plugin-systemd-journal libreport-plugin-ureport libreport-web   \
       libreswan librevenge libserf libsigsegv libtpms   \
-      libunistring1.0 libva-intel-driver libvirt-client   \
+      libunistring1.0 libvirt-client   \
       libvirt-daemon libvirt-daemon-common   \
       libvirt-daemon-config-network libvirt-daemon-driver-interface   \
       libvirt-daemon-driver-network libvirt-daemon-driver-nodedev   \
@@ -311,6 +311,14 @@ RUN dnf install -y abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       xpdf-libs xsel xz-devel yum zd1211-firmware  \
       zisofs-tools zlib-ng  \
       zsh   && \
+    dnf clean all
+
+# Install rpmfusion repos (needed for intel-media-driver)
+RUN dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm && \
+    dnf install -y https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm && \
+    dnf clean all
+
+RUN dnf install -y intel-media-driver libva-intel-driver && \
     dnf clean all
 
 # Cleanup image for linting
