@@ -62,6 +62,8 @@ ADD files/profile.d/vim-default-editor.sh /etc/profile.d/vim-default-editor.sh
 ADD files/profile.d/git-prompt.sh /etc/profile.d/git-prompt.sh
 
 # Verify image is good (must be run last!)
-RUN rm -rf /var && mkdir /var && \
+RUN rm -vrf /var && mkdir /var && \
+    rm -vrf /tmp && mkdir /tmp && \
+    rm -vrf /run/dnf /run/screen /run/selinux-policy && \
     test -f /usr/lib/sysusers.d/screen.conf || echo -e 'g screen 84' > /usr/lib/sysusers.d/screen.conf   # Cleanup image for linting
 RUN bootc container lint --fatal-warnings # Lint the image

@@ -330,7 +330,9 @@ RUN dnf remove -y glusterfs && \
     test -f /usr/lib/sysusers.d/ccache.conf || echo -e 'g ccache 959' > /usr/lib/sysusers.d/ccache.conf && \
     test -f /usr/lib/sysusers.d/libvirt.conf || echo -e 'g libvirt 963' > /usr/lib/sysusers.d/libvirt.conf && \
     test -f /usr/lib/sysusers.d/qat.conf || echo -e 'g qat 995' > /usr/lib/sysusers.d/qat.conf && \
-    rm -rf /var && mkdir /var
+    rm -vrf /var && mkdir /var && \
+    rm -vrf /tmp && mkdir /tmp && \
+    rm -vrf /run/dnf /run/screen /run/cockpit /run/fail2ban /run/nut /run/pluto /run/svnserve /run/xl2tpd /run/selinux-policy
 
 # Verify image is good (must be run last!)
 RUN bootc container lint --fatal-warnings # Lint the image
