@@ -47,18 +47,12 @@ jobs:
       contents: read
       packages: write
     steps:
-    - name: Free Disk Space (Ubuntu)
-      uses: jlumbroso/free-disk-space@v1.3.1
-      with:
-        # this might remove tools that are actually needed,
-        # if set to "true" but frees about 6 GB
-        tool-cache: false
-        android: true
-        dotnet: true
-        haskell: true
-        large-packages: true
-        docker-images: true
-        swap-storage: true
+    - name: Free Disk Space (android, dotnet, boost, CodeQL)
+      run: |
+        sudo rm -rf /usr/local/lib/android # ~12 GB
+        sudo rm -rf /usr/share/dotnet # ~2 GB
+        sudo rm -rf /usr/local/share/boost # ~1 GB
+        sudo rm -rf "$AGENT_TOOLSDIRECTORY/CodeQL" # ~5 GB
 
     - name: Checkout repo
       uses: actions/checkout@v4
