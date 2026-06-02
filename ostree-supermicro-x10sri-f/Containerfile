@@ -19,10 +19,10 @@ RUN dnf install -y abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       ansible ansible-core apcupsd   \
       at atmel-firmware atop augeas-libs  \
       BackupPC BackupPC-XS biber binutils-gold blosc blosc2   \
-      bonnie++ boost-atomic boost-filesystem   \
-      boost-program-options boost-regex bridge-utils capstone   \
+      bonnie++ boost-filesystem   \
+      boost-program-options boost-regex bridge-utils \
       ccache chkconfig  \
-      cockpit cockpit-packagekit cockpit-ws compat-readline5   \
+      cockpit cockpit-packagekit cockpit-ws  \
       containernetworking-plugins ctags cyrus-sasl   \
       dejavu-sans-mono-fonts deltarpm   \
       diffstat dos2unix doxygen   \
@@ -44,16 +44,15 @@ RUN dnf install -y abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       inkscape-libs  \
       ipxe-roms-qemu jigdo js-jquery   \
       jupyterlab jwhois  \
-      kf5-filesystem  \
       ldns lftp lib2geom libaec libappstream-glib   \
       libarrow libarrow-acero-libs libarrow-dataset-libs   \
       libarrow-doc libarrow-flight-libs libarrow-glib-libs   \
-      libatomic_ops libblkio libburn libcacard libcdr libdbi liberation-fonts-common   \
+      libatomic_ops libblkio libburn libcacard libcdr libdbi  \
       libesmtp libestr libfastjson libfdt \
       libgfapi0 libgfrpc0 libgfxdr0 libipt libiscsi libisoburn   \
       libisofs liblockfile libmediainfo   \
       libphodav \
-      libpmemobj libpq libreport   \
+      libpq libreport   \
       libreport-cli libreport-fedora libreport-plugin-bugzilla   \
       libreport-plugin-kerneloops libreport-plugin-logger   \
       libreport-plugin-systemd-journal libreport-plugin-ureport libreport-web   \
@@ -63,13 +62,13 @@ RUN dnf install -y abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       libvirt-daemon-config-network libvirt-daemon-driver-interface   \
       libvirt-daemon-driver-network libvirt-daemon-driver-nodedev   \
       libvirt-daemon-driver-nwfilter libvirt-daemon-driver-qemu   \
-      libvirt-daemon-driver-secret libvirt-daemon-driver-storage   \
+      libvirt-daemon-driver-secret  \
       libvirt-daemon-driver-storage-core libvirt-daemon-driver-storage-disk   \
-      libvirt-daemon-driver-storage-gluster libvirt-daemon-driver-storage-iscsi   \
+      libvirt-daemon-driver-storage-iscsi   \
       libvirt-daemon-driver-storage-iscsi-direct libvirt-daemon-driver-storage-logical   \
       libvirt-daemon-driver-storage-mpath libvirt-daemon-driver-storage-rbd   \
       libvirt-daemon-driver-storage-scsi libvirt-daemon-driver-storage-zfs   \
-      libvirt-daemon-kvm libvirt-daemon-lock libvirt-daemon-log   \
+      libvirt-daemon-lock libvirt-daemon-log   \
       libvirt-daemon-plugin-lockd libvirt-daemon-proxy libvirt-glib libvirt-libs   \
       libvisio libwpd libwpg libwsman1 libxcrypt-compat   \
       libxdp libzen llhttp llvm \
@@ -87,7 +86,7 @@ RUN dnf install -y abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       perl-autovivification perl-B-Hooks-EndOfScope   \
       perl-Business-ISBN perl-Business-ISBN-Data perl-Business-ISMN   \
       perl-Business-ISSN perl-CGI perl-Class-Accessor   \
-      perl-Class-Data-Inheritable perl-Class-Inspector   \
+      perl-Class-Data-Inheritable  \
       perl-Class-Method-Modifiers perl-Class-Singleton perl-Class-XSAccessor   \
       perl-Convert-ASN1 perl-Data-Compare  \
       perl-Data-Uniqid perl-Date-ISO8601 perl-Date-Manip perl-DateTime   \
@@ -96,15 +95,15 @@ RUN dnf install -y abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       perl-DateTime-TimeZone-SystemV perl-DateTime-TimeZone-Tzfile  \
       perl-Devel-CallChecker perl-Devel-Caller perl-Devel-GlobalDestruction   \
       perl-Devel-LexAlias perl-Devel-StackTrace perl-Dist-CheckConflicts   \
-      perl-DynaLoader-Functions perl-Email-Date-Format perl-Error   \
-      perl-Eval-Closure perl-Exception-Class perl-Exporter-Tiny  \
-      perl-File-Find-Rule perl-File-Next perl-File-ShareDir  \
+      perl-DynaLoader-Functions perl-Email-Date-Format perl-Error  \
+      perl-Eval-Closure perl-Exception-Class  \
+      perl-File-Find-Rule perl-File-Next  \
       perl-GD perl-GD-Barcode perl-Git perl-GSSAPI   \
       perl-IO-String  \
       perl-IPC-Run3 perl-JSON   \
       perl-LDAP perl-Lexical-SealRequireHints perl-Lexical-Var   \
       perl-Lingua-Translit perl-List-AllUtils   \
-      perl-List-MoreUtils perl-List-MoreUtils-XS perl-List-SomeUtils   \
+      perl-List-SomeUtils   \
       perl-List-UtilsBy  \
       perl-Log-Dispatch perl-Log-Dispatch-FileRotate perl-Log-Log4perl   \
       perl-LWP-Protocol-https perl-Mail-Sender perl-Mail-Sendmail   \
@@ -131,7 +130,7 @@ RUN dnf install -y abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       postfix potrace protobuf-compiler psacct   \
       python3-abrt python3-abrt-addon python3-aiodns   \
       python3-aiohttp python3-aiohttp+speedups python3-aiosignal   \
-      python3-antlr4-runtime python3-anyio   \
+      python3-antlr4-runtime  \
       python3-argon2-cffi python3-argon2-cffi-bindings python3-arrow   \
       python3-asttokens python3-async-lru python3-async-timeout   \
       python3-augeas python3-Automat python3-babel python3-backcall   \
@@ -144,12 +143,12 @@ RUN dnf install -y abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       python3-decorator python3-defusedxml python3-entrypoints   \
       python3-et_xmlfile python3-executing python3-fastjsonschema   \
       python3-fqdn python3-frozenlist python3-fsspec   \
-      python3-gcsfs python3-gmpy2 python3-google-api-core   \
+      python3-gmpy2 python3-google-api-core   \
       python3-googleapis-common-protos python3-google-auth   \
       python3-google-auth-oauthlib python3-google-cloud-core   \
       python3-google-cloud-storage python3-google-crc32c   \
       python3-google-resumable-media python3-gpg python3-greenlet python3-grpcio   \
-      python3-grpcio-status python3-h11 python3-html5lib python3-httpcore python3-httpx   \
+      python3-grpcio-status python3-html5lib  \
       python3-hyperlink python3-imageio python3-importlib-metadata python3-incremental python3-inkex   \
       python3-ipykernel python3-ipython   \
       python3-ipython_genutils python3-isoduration python3-jdcal python3-jedi   \
@@ -174,7 +173,7 @@ RUN dnf install -y abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       python3-pyasn1-modules python3-pyasynchat python3-pyasyncore   \
       python3-pycares python3-pydot python3-pyglet python3-pygments   \
       python3-pygraphviz python3-PyMySQL python3-pyOpenSSL   \
-      python3-pyqt5-sip python3-pyrsistent python3-pyserial   \
+      python3-pyqt5-sip python3-pyserial   \
       python3-pytz python3-pywt python3-qt5-base python3-QtPy   \
       python3-requests-oauthlib python3-resolvelib python3-rfc3339-validator   \
       python3-rfc3986-validator python3-rpmconf python3-rsa python3-satyr python3-scikit-image   \
@@ -204,7 +203,7 @@ RUN dnf install -y abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       qemu-device-display-virtio-gpu-rutabaga qemu-device-display-virtio-vga   \
       qemu-device-display-virtio-vga-gl qemu-device-display-virtio-vga-rutabaga   \
       qemu-device-usb-host qemu-device-usb-redirect   \
-      qemu-device-usb-smartcard qemu-img qemu-kvm qemu-pr-helper qemu-system-x86   \
+      qemu-device-usb-smartcard qemu-kvm qemu-pr-helper qemu-system-x86   \
       qemu-system-x86-core qemu-ui-curses qemu-ui-egl-headless qemu-ui-gtk   \
       qemu-ui-opengl qemu-ui-sdl qemu-ui-spice-app   \
       qemu-ui-spice-core qemu-user-static  \
@@ -215,7 +214,6 @@ RUN dnf install -y abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       qemu-user-static-or1k qemu-user-static-ppc qemu-user-static-riscv   \
       qemu-user-static-s390x qemu-user-static-sh4 qemu-user-static-sparc   \
       qemu-user-static-x86 qemu-user-static-xtensa  \
-      re2  \
       rrdtool rsync-bpc roc-toolkit remove-retired-packages \
       rpmconf rpmconf-base rsyslog \
       rutabaga-gfx-ffi samba samba-common-tools samba-dcerpc \
@@ -306,7 +304,7 @@ RUN dnf install -y abrt abrt-addon-ccpp abrt-addon-kerneloops   \
       virglrenderer virtiofsd virt-manager virt-manager-common  \
       web-assets-filesystem   \
       webrtc-audio-processing0.3  \
-      xapian-core-libs xclip xdelta xen-libs xen-licenses xl2tpd xmlrpc-c   \
+      xapian-core-libs xclip xdelta xen-libs xen-licenses xmlrpc-c   \
       xmlrpc-c-client xorg-x11-fonts-ISO8859-1-100dpi xorriso   \
       xpdf-libs xsel xz-devel yum zd1211-firmware  \
       zisofs-tools zlib-ng  \
@@ -325,14 +323,9 @@ RUN dnf install -y intel-media-driver libva-intel-driver && \
 RUN dnf remove -y glusterfs && \
     sed -i '/gluster/d' /etc/passwd && \
     sed -i '/gluster/d' /etc/group && \
-    test -f /usr/lib/sysusers.d/abrt.conf || echo -e 'g abrt 173\nu abrt 173 "" /etc/abrt /sbin/nologin' > /usr/lib/sysusers.d/abrt.conf && \
-    test -f /usr/lib/sysusers.d/backuppc.conf || echo -e 'g backuppc 960\nu backuppc 961 "" /var/lib/BackupPC /sbin/nologin' > /usr/lib/sysusers.d/backuppc.conf && \
-    test -f /usr/lib/sysusers.d/ccache.conf || echo -e 'g ccache 959' > /usr/lib/sysusers.d/ccache.conf && \
-    test -f /usr/lib/sysusers.d/libvirt.conf || echo -e 'g libvirt 963' > /usr/lib/sysusers.d/libvirt.conf && \
-    test -f /usr/lib/sysusers.d/qat.conf || echo -e 'g qat 995' > /usr/lib/sysusers.d/qat.conf && \
     rm -vrf /var && mkdir /var && \
     rm -vrf /tmp && mkdir /tmp && \
-    rm -vrf /run/dnf /run/screen /run/cockpit /run/fail2ban /run/nut /run/pluto /run/svnserve /run/xl2tpd /run/selinux-policy
+    rm -vrf /run/dnf /run/cockpit /run/fail2ban /run/nut /run/pluto /run/samba /run/selinux-policy /run/svnserve
 
 # Verify image is good (must be run last!)
 RUN bootc container lint --fatal-warnings # Lint the image
