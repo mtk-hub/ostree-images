@@ -12,41 +12,46 @@ env:
   REGISTRY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
 jobs:
   ostree-base:
+    env:
+      SRC_DIR: ostree-base
     runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
     steps:
+    - name: Install xonsh
+      run: |
+        sudo apt update
+        sudo apt install -y xonsh
+
     - name: Checkout repo
-      uses: actions/checkout@v4
+      uses: actions/checkout@v7
 
     - name: Build container image
-      uses: redhat-actions/buildah-build@v2.13
-      with:
-        context: "ostree-base"
-        containerfiles: "ostree-base/Containerfile"
-        image: ostree-base
-        layers: false
-        oci: true
+      run: |
+        pushd "${{ env.SRC_DIR }}"
+        ./build.xsh
 
-    - name: Push to ghcr.io
-      uses: redhat-actions/push-to-registry@v2.8
-      with:
-        image: ostree-base
-        tags: "latest"
-        registry: ${{ env.IMAGE_REGISTRY }}
-        username: ${{ env.REGISTRY_USER }}
-        password: ${{ env.REGISTRY_PASSWORD }}
-        extra-args: |
-          --disable-content-trust
+    - name: Push container image
+      run: |
+        podman login "${{ env.IMAGE_REGISTRY }}" -u "${{ env.REGISTRY_USER }}" -p "${{ env.REGISTRY_PASSWORD }}"
+        pushd "${{ env.SRC_DIR }}"
+        ./push.xsh
 
   ostree-supermicro-x10sri-f:
+    env:
+      SRC_DIR: ostree-supermicro-x10sri-f
     needs: ostree-base
     runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
     steps:
+    - name: Install xonsh
+      run: |
+        sudo apt update
+        sudo apt install -y xonsh
+
     - name: Free Disk Space (android, dotnet, boost, CodeQL)
       run: |
         sudo rm -rf /usr/local/lib/android # ~12 GB
@@ -55,24 +60,15 @@ jobs:
         sudo rm -rf "$AGENT_TOOLSDIRECTORY/CodeQL" # ~5 GB
 
     - name: Checkout repo
-      uses: actions/checkout@v4
+      uses: actions/checkout@v7
 
     - name: Build container image
-      uses: redhat-actions/buildah-build@v2.13
-      with:
-        context: "ostree-supermicro-x10sri-f"
-        containerfiles: "ostree-supermicro-x10sri-f/Containerfile"
-        image: ostree-supermicro-x10sri-f
-        layers: false
-        oci: true
+      run: |
+        pushd "${{ env.SRC_DIR }}"
+        ./build.xsh
 
-    - name: Push to ghcr.io
-      uses: redhat-actions/push-to-registry@v2.8
-      with:
-        image: ostree-supermicro-x10sri-f
-        tags: "latest"
-        registry: ${{ env.IMAGE_REGISTRY }}
-        username: ${{ env.REGISTRY_USER }}
-        password: ${{ env.REGISTRY_PASSWORD }}
-        extra-args: |
-          --disable-content-trust
+    - name: Push container image
+      run: |
+        podman login "${{ env.IMAGE_REGISTRY }}" -u "${{ env.REGISTRY_USER }}" -p "${{ env.REGISTRY_PASSWORD }}"
+        pushd "${{ env.SRC_DIR }}"
+        ./push.xsh
