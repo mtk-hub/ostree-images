@@ -325,7 +325,7 @@ RUN dnf remove -y glusterfs && \
     sed -i '/gluster/d' /etc/group && \
     rm -vrf /var && mkdir /var && \
     rm -vrf /tmp && mkdir /tmp && \
-    rm -vrf /run/dnf /run/cockpit /run/fail2ban /run/nut /run/pluto /run/samba /run/selinux-policy /run/svnserve
+    /bin/cleanup-slash-run-for-bootc-lint.sh
 
 # Verify image is good (must be run last!)
 RUN bootc container lint --fatal-warnings # Lint the image
