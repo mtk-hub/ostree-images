@@ -1,4 +1,4 @@
-name: build and push all container images
+name: Build
 on:
   workflow_dispatch:
   schedule:
