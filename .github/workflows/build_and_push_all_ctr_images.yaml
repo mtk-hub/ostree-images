@@ -19,10 +19,10 @@ jobs:
       contents: read
       packages: write
     steps:
-    - name: Install xonsh
+    - name: Install Deps
       run: |
         sudo apt update
-        sudo apt install -y xonsh
+        sudo apt install -y xonsh podman crun
 
     - name: Checkout repo
       uses: actions/checkout@v7
@@ -47,10 +47,10 @@ jobs:
       contents: read
       packages: write
     steps:
-    - name: Install xonsh
+    - name: Install Deps
       run: |
         sudo apt update
-        sudo apt install -y xonsh
+        sudo apt install -y xonsh podman crun
 
     - name: Free Disk Space (android, dotnet, boost, CodeQL)
       run: |
