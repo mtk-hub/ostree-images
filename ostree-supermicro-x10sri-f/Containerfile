@@ -1,5 +1,19 @@
 FROM ghcr.io/mtk-hub/ostree-base:latest
 
+# Install nvidia drivers
+# We must move akmodsbuild bin out of the way because the nvidia package tries to call it and
+# it fails saying it should not be run as root
+RUN dnf install -y akmods && \
+    mv /usr/bin/akmodsbuild /usr/bin/akmodsbuild.bak && \
+    ln -s /usr/bin/true /usr/bin/akmodsbuild && \
+    dnf install -y akmod-nvidia xorg-x11-drv-nvidia-cuda nvtop glmark2 && \
+    mv /usr/bin/akmodsbuild.bak /usr/bin/akmodsbuild && \
+    dnf clean all
+
+# Create nvidia akmods
+ADD files/install-nvidia-akmod.sh /usr/bin/install-nvidia-akmod.sh
+RUN install-nvidia-akmod.sh && \
+    rm -rf /var /usr/bin/install-nvidia-akmod.sh
 
 # Install UPS software
 RUN dnf install -y nut baobab && \
