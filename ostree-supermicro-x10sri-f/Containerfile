@@ -10,6 +10,11 @@ RUN dnf install -y akmods && \
     mv /usr/bin/akmodsbuild.bak /usr/bin/akmodsbuild && \
     dnf clean all
 
+# Add nvidia container toolkit repo and install it
+RUN dnf config-manager addrepo --from-repofile=https://nvidia.github.io/libnvidia-container/stable/rpm/nvidia-container-toolkit.repo && \
+    dnf install -y nvidia-container-toolkit && \
+    dnf clean all
+
 # Create nvidia akmods
 ADD files/install-nvidia-akmod.sh /usr/bin/install-nvidia-akmod.sh
 RUN install-nvidia-akmod.sh && \
